@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The ESG Edge — ESG × SDG Knowledge Library | Subramanian Shanmugam</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4f7f4; --surface:#ffffff; --card:#ffffff; --border:#d8e8dc; --border-light:#e4efe6;
+  --green:#16a34a; --green-dark:#15803d; --green-pale:rgba(22,163,74,0.07);
+  --gold:#b45309; --gold-dark:#92400e; --blue:#0369a1; --rose:#be123c;
+  --text-primary:#0f1f14; --text-secondary:#1e4d2b; --text-muted:#4d7a5a;
+  --E:#16a34a; --E-bg:rgba(22,163,74,0.09);
+  --S:#0369a1; --S-bg:rgba(3,105,161,0.09);
+  --G:#b45309; --G-bg:rgba(180,83,9,0.09);
+  --ES:#4d7c0f; --ES-bg:rgba(77,124,15,0.09);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text-primary);font-family:'DM Sans',sans-serif;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 5% 10%,rgba(22,163,74,0.05) 0%,transparent 55%),radial-gradient(ellipse 50% 60% at 95% 85%,rgba(3,105,161,0.04) 0%,transparent 55%),radial-gradient(ellipse 40% 40% at 50% 50%,rgba(180,83,9,0.03) 0%,transparent 55%);pointer-events:none;z-index:0}
+.container{max-width:1380px;margin:0 auto;padding:0 2rem;position:relative;z-index:1}
+
+/* HEADER */
+header{padding:3rem 0 2rem;border-bottom:1px solid var(--border);margin-bottom:2rem}
+.brand-badge{display:inline-flex;align-items:center;gap:.5rem;background:var(--green-pale);border:1px solid rgba(34,197,94,0.25);color:var(--green);padding:.3rem 1rem;border-radius:100px;font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:1rem}
+h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.6rem);font-weight:900;line-height:1.06;letter-spacing:-.02em}
+h1 .hi{background:linear-gradient(135deg,var(--green),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.tagline{margin-top:.75rem;font-size:.95rem;color:var(--text-muted);font-weight:300;max-width:680px;line-height:1.65}
+.header-row{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem}
+.author-block{text-align:right}
+.author-name{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--text-primary)}
+.author-role{font-size:.73rem;color:var(--text-muted);margin-top:.2rem;line-height:1.7}
+.stats-row{display:flex;gap:2.5rem;margin-top:1.5rem;flex-wrap:wrap}
+.stat-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--gold);line-height:1}
+.stat-label{font-size:.66rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.1em;margin-top:.2rem}
+
+/* SHARE BAR */
+.share-bar{background:rgba(22,163,74,.05);border:1px solid rgba(22,163,74,.18);border-radius:12px;padding:1.1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1.8rem}
+.share-text{font-size:.88rem;color:var(--text-secondary);font-weight:500}
+.share-text span{color:var(--text-muted);font-size:.75rem;font-weight:400;display:block;margin-top:.15rem}
+.share-btn{padding:.55rem 1.3rem;border-radius:8px;font-size:.8rem;font-weight:600;cursor:pointer;border:none;background:#0a66c2;color:#fff;font-family:'DM Sans',sans-serif;transition:all .2s;text-decoration:none;display:inline-block}
+.share-btn:hover{background:#004182}
+
+/* CONTROLS */
+.controls{display:flex;gap:.6rem;margin-bottom:2rem;flex-wrap:wrap;align-items:center}
+.search-wrap{flex:1;min-width:200px;position:relative}
+.search-wrap::before{content:'⌕';position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:1.1rem;pointer-events:none}
+#searchInput{width:100%;padding:.6rem 1rem .6rem 2.2rem;border:1px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:.84rem;background:var(--surface);color:var(--text-primary);outline:none;transition:border-color .2s}
+#searchInput:focus{border-color:var(--green)}
+#searchInput::placeholder{color:var(--text-muted)}
+.f-btn{padding:.45rem 1rem;border-radius:100px;font-size:.78rem;font-weight:500;cursor:pointer;border:1.5px solid var(--border);background:var(--surface);color:var(--text-muted);transition:all .2s;font-family:'DM Sans',sans-serif}
+.f-btn.active,.f-btn:hover{border-color:var(--green);color:var(--green);background:var(--green-pale)}
+.f-btn[data-f="E"].active{border-color:var(--E);color:var(--E);background:var(--E-bg)}
+.f-btn[data-f="S"].active{border-color:var(--S);color:var(--S);background:var(--S-bg)}
+.f-btn[data-f="G"].active{border-color:var(--G);color:var(--G);background:var(--G-bg)}
+.rnd-btn{padding:.5rem 1.2rem;border-radius:8px;font-size:.82rem;font-weight:600;cursor:pointer;border:1.5px solid var(--gold);background:rgba(240,192,64,.1);color:var(--gold);transition:all .2s;font-family:'DM Sans',sans-serif;white-space:nowrap}
+.rnd-btn:hover{background:var(--gold);color:#000}
+.count{font-size:.74rem;color:var(--text-muted);font-family:'DM Mono',monospace;white-space:nowrap}
+
+/* GRID */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.2rem;margin-bottom:3rem}
+
+/* CARD */
+.card{background:var(--card);border:1px solid var(--border-light);border-radius:14px;padding:1.4rem;cursor:pointer;transition:all .25s;position:relative;overflow:hidden;animation:fadeUp .35s ease forwards;opacity:0}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:14px 14px 0 0}
+.card[data-p="E"]::before{background:var(--E)}
+.card[data-p="S"]::before{background:var(--S)}
+.card[data-p="G"]::before{background:var(--G)}
+.card[data-p="ES"]::before{background:linear-gradient(90deg,var(--E),var(--S))}
+.card:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(0,0,0,.10);border-color:var(--border)}
+.card.hidden{display:none}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+.sdg-row{display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem}
+.sdg-num{width:40px;height:40px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:900;font-size:1.15rem;color:#fff;flex-shrink:0}
+.sdg-title{font-weight:600;font-size:.92rem;color:var(--text-primary);line-height:1.2}
+.sdg-sub{font-size:.68rem;color:var(--text-muted);margin-top:.1rem}
+
+.pillar-chip{display:inline-flex;align-items:center;padding:.18rem .6rem;border-radius:4px;font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.65rem}
+.chip-E{background:var(--E-bg);color:var(--E);border:1px solid rgba(34,197,94,.25)}
+.chip-S{background:var(--S-bg);color:var(--S);border:1px solid rgba(56,189,248,.25)}
+.chip-G{background:var(--G-bg);color:var(--G);border:1px solid rgba(240,192,64,.25)}
+.chip-ES{background:var(--ES-bg);color:var(--ES);border:1px solid rgba(163,230,53,.25)}
+
+.card-desc{font-size:.8rem;color:var(--text-muted);line-height:1.58;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:.9rem}
+.card-footer{display:flex;justify-content:space-between;align-items:center;padding-top:.75rem;border-top:1px solid var(--border)}
+.fw-tags{display:flex;gap:.3rem;flex-wrap:wrap}
+.fw-tag{font-size:.6rem;padding:.13rem .42rem;border-radius:3px;font-family:'DM Mono',monospace;background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--text-muted)}
+.read-lnk{font-size:.72rem;color:var(--green);font-weight:600;letter-spacing:.04em;white-space:nowrap}
+
+/* SPOTLIGHT CARD */
+.card.spotlight{border-color:var(--gold);box-shadow:0 0 0 2px rgba(240,192,64,.3),0 12px 36px rgba(240,192,64,.15)}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(15,31,20,.55);z-index:1000;display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;pointer-events:none;transition:opacity .25s;backdrop-filter:blur(6px)}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{background:var(--surface);border:1px solid var(--border);border-radius:18px;max-width:780px;width:100%;max-height:92vh;overflow-y:auto;box-shadow:0 24px 80px rgba(0,0,0,.13);transform:translateY(24px);transition:transform .28s;position:relative;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
+.modal-overlay.open .modal{transform:translateY(0)}
+.modal-top-bar{height:5px;border-radius:18px 18px 0 0}
+.modal-body{padding:2rem 2rem 1.5rem}
+
+/* ARTICLE */
+.art-header{margin-bottom:1.6rem;padding-bottom:1.3rem;border-bottom:1px solid var(--border)}
+.art-sdg-row{display:flex;align-items:flex-start;gap:1rem;margin-bottom:.9rem}
+.art-badge{width:54px;height:54px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:900;font-size:1.5rem;color:#fff;flex-shrink:0}
+.art-title{font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:900;color:var(--text-primary);line-height:1.12;margin-bottom:.25rem}
+.art-subtitle{font-size:.86rem;color:var(--text-muted);line-height:1.6;font-style:italic}
+.art-meta{display:flex;gap:.5rem;flex-wrap:wrap;margin:.8rem 0}
+.meta-pill{font-size:.67rem;padding:.22rem .75rem;border-radius:100px;font-family:'DM Mono',monospace;font-weight:500;border:1px solid}
+
+/* impact bar */
+.imp-row{display:flex;align-items:center;gap:.75rem;margin-top:.6rem}
+.imp-track{flex:1;height:5px;background:var(--border);border-radius:10px;overflow:hidden}
+.imp-fill{height:100%;border-radius:10px}
+.imp-pct{font-size:.7rem;font-family:'DM Mono',monospace;color:var(--text-muted);min-width:36px}
+.imp-word{font-size:.7rem;font-weight:700;min-width:60px}
+
+/* SECTIONS */
+.art-section{margin-bottom:1.5rem}
+.sec-label{font-size:.63rem;text-transform:uppercase;letter-spacing:.14em;color:var(--text-muted);font-weight:600;font-family:'DM Mono',monospace;margin-bottom:.65rem;display:flex;align-items:center;gap:.5rem}
+.sec-label::before{content:'';width:18px;height:1px;background:var(--text-muted)}
+
+/* Definition text */
+.def-box{background:rgba(22,163,74,.05);border-left:3px solid var(--green);border-radius:0 8px 8px 0;padding:.9rem 1.1rem;margin-bottom:.8rem}
+.def-box p{font-size:.87rem;color:var(--text-secondary);line-height:1.72}
+.why-text p{font-size:.85rem;color:var(--text-muted);line-height:1.72;margin-bottom:.5rem}
+
+/* Requirements */
+.req-list{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+.req-list li{display:flex;gap:.7rem;align-items:flex-start;font-size:.84rem;color:var(--text-secondary);line-height:1.65}
+.req-list li::before{content:'◆';color:var(--green);font-size:.45rem;flex-shrink:0;margin-top:.52rem}
+
+/* Monitor */
+.monitor-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:.2rem}
+@media(max-width:500px){.monitor-grid{grid-template-columns:1fr}}
+.monitor-item{background:rgba(3,105,161,.05);border:1px solid rgba(3,105,161,.15);border-radius:8px;padding:.65rem .8rem}
+.monitor-metric{font-size:.75rem;font-weight:600;color:var(--blue);margin-bottom:.2rem}
+.monitor-desc{font-size:.72rem;color:var(--text-muted);line-height:1.5}
+
+/* KPI Grid */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:.55rem;margin-top:.3rem}
+.kpi-card{background:rgba(180,83,9,.05);border:1px solid rgba(180,83,9,.15);border-radius:8px;padding:.7rem .85rem}
+.kpi-name{font-size:.73rem;font-weight:600;color:var(--gold);margin-bottom:.2rem}
+.kpi-desc{font-size:.69rem;color:var(--text-muted);line-height:1.5}
+.kpi-target{font-size:.65rem;color:var(--green);font-family:'DM Mono',monospace;margin-top:.25rem}
+
+/* Frameworks */
+.fw-row{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.35rem}
+.fw-b{font-size:.69rem;padding:.22rem .65rem;border-radius:4px;font-family:'DM Mono',monospace;font-weight:500}
+.fw-gri{background:rgba(22,163,74,.1);color:#15803d;border:1px solid rgba(22,163,74,.25)}
+.fw-sasb{background:rgba(180,83,9,.1);color:#92400e;border:1px solid rgba(180,83,9,.25)}
+.fw-tcfd{background:rgba(3,105,161,.1);color:#075985;border:1px solid rgba(3,105,161,.25)}
+.fw-iso{background:rgba(190,18,60,.1);color:#9f1239;border:1px solid rgba(190,18,60,.25)}
+.fw-un{background:rgba(109,40,217,.1);color:#6d28d9;border:1px solid rgba(109,40,217,.25)}
+.fw-sbti{background:rgba(77,124,15,.1);color:#3f6212;border:1px solid rgba(77,124,15,.25)}
+
+/* Actions */
+.action-list{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+.action-list li{display:flex;gap:.75rem;align-items:flex-start;font-size:.84rem;color:var(--text-secondary);line-height:1.65}
+.action-list li::before{content:'→';color:var(--gold);flex-shrink:0;font-size:.8rem;margin-top:.08rem}
+
+/* Real World */
+.example-box{background:#f8faf8;border:1px solid var(--border);border-radius:10px;padding:.9rem 1.1rem}
+.example-box p{font-size:.82rem;color:var(--text-muted);line-height:1.7}
+.example-box strong{color:var(--text-secondary)}
+
+/* Modal nav */
+.modal-nav{display:flex;gap:.6rem;margin-top:1.6rem;padding-top:1rem;border-top:1px solid var(--border)}
+.nav-btn{flex:1;padding:.6rem;border-radius:8px;font-size:.8rem;font-weight:500;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--text-muted);transition:all .2s;font-family:'DM Sans',sans-serif}
+.nav-btn:hover{border-color:var(--green);color:var(--green)}
+.nav-btn.primary{background:var(--green-dark);color:#fff;border-color:var(--green-dark)}
+.nav-btn.primary:hover{background:var(--green)}
+.close-btn{position:absolute;top:1.1rem;right:1.1rem;width:30px;height:30px;border-radius:50%;border:1px solid var(--border);background:var(--surface);cursor:pointer;font-size:.85rem;color:var(--text-muted);display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:10}
+.close-btn:hover{background:var(--rose);color:#fff;border-color:var(--rose)}
+
+/* FRAMEWORK TABLE */
+.fw-section{margin-bottom:2.5rem}
+.fw-section-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;margin-bottom:1.2rem}
+.fw-section-title{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--text-primary)}
+.fw-section-sub{font-size:.78rem;color:var(--text-muted);margin-top:.2rem}
+.fw-toggle-btn{padding:.45rem 1.1rem;border-radius:8px;font-size:.78rem;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:var(--surface);color:var(--text-muted);transition:all .2s;font-family:'DM Sans',sans-serif;white-space:nowrap}
+.fw-toggle-btn.open{border-color:var(--green);color:var(--green);background:var(--green-pale)}
+.fw-table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:14px;background:var(--surface)}
+.fw-table-wrap.hidden{display:none}
+.fw-table{width:100%;border-collapse:collapse;font-size:.78rem}
+.fw-table thead tr{background:rgba(22,163,74,.05);border-bottom:2px solid var(--border)}
+.fw-table th{padding:.75rem 1rem;text-align:left;font-family:'DM Mono',monospace;font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);font-weight:500;white-space:nowrap}
+.fw-table th:first-child{padding-left:1.25rem}
+.fw-table tbody tr{border-bottom:1px solid var(--border-light);transition:background .15s}
+.fw-table tbody tr:hover{background:rgba(22,163,74,.04)}
+.fw-table tbody tr:last-child{border-bottom:none}
+.fw-table td{padding:.65rem 1rem;vertical-align:middle}
+.fw-table td:first-child{padding-left:1.25rem}
+.fw-name{font-weight:600;color:var(--text-primary);font-size:.8rem}
+.fw-full{font-size:.72rem;color:var(--text-muted);margin-top:.1rem}
+.fw-type-badge{display:inline-block;padding:.15rem .55rem;border-radius:4px;font-size:.63rem;font-weight:600;font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.06em}
+.fw-scope{font-size:.75rem;color:var(--text-secondary);line-height:1.5}
+.fw-sdg-dots{display:flex;flex-wrap:wrap;gap:.25rem}
+.fw-sdg-dot{width:20px;height:20px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.55rem;font-weight:700;color:#fff;flex-shrink:0}
+.fw-mandatory{font-size:.72rem;color:var(--text-muted);line-height:1.5}
+
+/* Footer */
+footer{border-top:1px solid var(--border);padding:2rem 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;margin-top:1rem}
+.footer-brand{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--green)}
+.footer-copy{font-size:.7rem;color:var(--text-muted);width:100%;margin-top:.4rem}
+@media(max-width:600px){.grid{grid-template-columns:1fr}h1{font-size:1.9rem}.monitor-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="header-row">
+    <div>
+      <div class="brand-badge">◈ Weekend Learning Library · The ESG Edge · Vol. 1</div>
+      <h1>The ESG <span class="hi">Edge</span><br>SDG Knowledge Library</h1>
+      <p class="tagline">A practitioner's reference library — every one of the 17 UN Sustainable Development Goals explored as a full ESG article: definition, business case, requirements, monitoring metrics, KPIs, reporting frameworks, and expert actions. Curated by Subramanian Shanmugam.</p>
+      <div class="stats-row">
+        <div><div class="stat-num">17</div><div class="stat-label">SDG Articles</div></div>
+        <div><div class="stat-num">3</div><div class="stat-label">ESG Pillars</div></div>
+        <div><div class="stat-num">6+</div><div class="stat-label">Frameworks</div></div>
+        <div><div class="stat-num">∞</div><div class="stat-label">Impact Potential</div></div>
+      </div>
+    </div>
+    <div class="author-block">
+      <div class="author-name">Subramanian Shanmugam</div>
+      <div class="author-role">ESG & Quality Excellence Manager<br>Sustainability & Continuous Improvement Leader<br>Weekend Learning Curator</div>
+    </div>
+  </div>
+</header>
+
+<div class="share-bar">
+  <div class="share-text">Found this useful? Share with your LinkedIn network!
+    <span>Tag a fellow ESG & Sustainability professional who would benefit from this library.</span>
+  </div>
+  <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https://subramanian-qm.github.io/ESG-index/" target="_blank">Share on LinkedIn</a>
+</div>
+
+<div class="controls">
+  <div class="search-wrap">
+    <input type="text" id="searchInput" placeholder="Search SDGs, frameworks, KPIs, topics..." oninput="filterCards()">
+  </div>
+  <button class="f-btn active" data-f="all" onclick="setFilter('all',this)">All 17</button>
+  <button class="f-btn" data-f="E" onclick="setFilter('E',this)">🌿 Environmental</button>
+  <button class="f-btn" data-f="S" onclick="setFilter('S',this)">🤝 Social</button>
+  <button class="f-btn" data-f="G" onclick="setFilter('G',this)">⚖️ Governance</button>
+  <button class="rnd-btn" onclick="pickRandom()">🎲 Random Article</button>
+  <div class="count" id="countEl">17 articles</div>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<div class="fw-section" id="fwSection">
+  <div class="fw-section-header">
+    <div>
+      <div class="fw-section-title">📋 ESG Reporting Frameworks Reference Table</div>
+      <div class="fw-section-sub">All frameworks referenced across the 17 SDG articles — with scope, SDG mapping, and mandatory status</div>
+    </div>
+    <button class="fw-toggle-btn" id="fwToggleBtn" onclick="toggleFwTable()">Show Framework Table ▾</button>
+  </div>
+  <div class="fw-table-wrap hidden" id="fwTableWrap">
+    <table class="fw-table">
+      <thead>
+        <tr>
+          <th>Framework</th>
+          <th>Type</th>
+          <th>Scope & Purpose</th>
+          <th>Relevant SDGs</th>
+          <th>Mandatory / Voluntary</th>
+        </tr>
+      </thead>
+      <tbody id="fwTableBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<div class="modal-overlay" id="overlay" onclick="closeOutside(event)">
+  <div class="modal" id="modal">
+    <div class="modal-top-bar" id="mBar"></div>
+    <button class="close-btn" onclick="closeModal()">✕</button>
+    <div class="modal-body" id="mBody"></div>
+  </div>
+</div>
+
+<footer>
+  <div>
+    <div class="footer-brand">The ESG Edge</div>
+    <div style="font-size:.74rem;color:var(--text-muted);margin-top:.25rem">GRI Standards · SASB · TCFD · ISSB · TNFD · SBTi · UN Global Compact · 2030 Agenda</div>
+  </div>
+  <div style="text-align:right;font-size:.74rem;color:var(--text-muted)">Curated by Subramanian Shanmugam<br>Weekend Learning Library · Vol. 1</div>
+  <div class="footer-copy">© 2026 The ESG Edge · Curated by Subramanian Shanmugam · Free to share with attribution · Knowledge grows when shared<br>#TheESGEdge · #WeekendLearning · #ESG · #Sustainability · #SDGs · #ESGExpert</div>
+</footer>
+</div>
+
+<script>
+const C={1:"#e5243b",2:"#dda63a",3:"#4c9f38",4:"#c5192d",5:"#ff3a21",6:"#26bde2",7:"#fcc30b",8:"#a21942",9:"#fd6925",10:"#dd1367",11:"#fd9d24",12:"#bf8b2e",13:"#3f7e44",14:"#0a97d9",15:"#56c02b",16:"#00689d",17:"#19486a"};
+
+const topics=[
+{num:1,pillar:"S",title:"No Poverty",subtitle:"End poverty in all forms everywhere",
+desc:"A business imperative to ensure living wages, ethical supply chains, and community economic development — because poverty is both a human rights issue and a material business risk.",
+definition:"SDG 1 calls for the eradication of extreme poverty (living on less than $2.15 per day) and the reduction of poverty in all dimensions by 2030. For the private sector, this is not an abstract global challenge — it is directly embedded in how organisations pay their people, source their goods, and invest in the communities where they operate. Every employee paid below a living wage, every supply chain worker denied fair conditions, and every community excluded from economic growth is a direct corporate contribution to the poverty problem.",
+whyItMatters:"Over 700 million people globally still live in extreme poverty. The private sector employs hundreds of millions through direct and indirect supply chains. When corporations pay poverty wages or source from exploitative supply chains purely to minimise cost, they export poverty risk. Conversely, companies that invest in living wages and supplier development create resilient supply chains, reduce turnover costs, and build loyal communities. ESG investors use poverty-related metrics as proxies for long-term value creation quality.",
+requirements:[
+  "Pay all direct employees at minimum a nationally recognised living wage (not merely the statutory minimum wage) — and publish the gap between current pay and living wage benchmarks",
+  "Map the supply chain to at least Tier 2 level to identify workers in poverty-risk geographies and sectors",
+  "Implement a Supplier Code of Conduct covering living wages, safe working conditions, and no child or forced labour — with audit verification",
+  "Disclose community investment spend as an absolute figure and as a percentage of pre-tax profit",
+  "Establish a procurement policy that actively supports local and small business suppliers in poverty-affected regions",
+  "Conduct annual modern slavery and child labour risk assessments covering all material supply chain categories",
+  "Create and fund a grievance mechanism accessible to all supply chain workers — not just direct employees"
+],
+monitoring:[
+  {metric:"Living Wage Gap %",desc:"Percentage of employees paid below the national living wage benchmark. Target: 0% — full living wage coverage"},
+  {metric:"Supply Chain Audit Rate",desc:"% of Tier 1 suppliers with a completed social compliance audit in the past 12 months. Target: 100% Tier 1"},
+  {metric:"Community Investment",desc:"Annual spend on community programmes (£/$) and as % of pre-tax profit. Benchmark: 1%+ of pre-tax profit"},
+  {metric:"Local Procurement %",desc:"% of total procurement spend placed with local or SME suppliers in priority communities"},
+  {metric:"Modern Slavery Coverage",desc:"% of Tier 1 and Tier 2 supply chain assessed for modern slavery risk. Target: 100% Tier 1, 80% Tier 2"},
+  {metric:"Grievance Mechanism Usage",desc:"Number of grievances raised and % resolved within defined SLA — low numbers may indicate lack of awareness"}
+],
+kpis:[
+  {name:"Living Wage Coverage",desc:"% of employees at or above living wage",target:"Target: 100%"},
+  {name:"Audit Completion",desc:"% Tier 1 suppliers audited annually",target:"Target: 100% Tier 1"},
+  {name:"Community Investment",desc:"Spend as % of pre-tax profit",target:"Benchmark: ≥1%"},
+  {name:"Local Procurement",desc:"% spend with local/SME suppliers",target:"Set annual uplift target"}
+],
+frameworks:["GRI 201","GRI 414","SASB","SDG Fund","ILO Conventions","UNGC Principle 1-2","UN Guiding Principles"],
+actions:[
+  "Commission a living wage analysis against the Real Living Wage Foundation benchmark and publish a time-bound roadmap to full coverage",
+  "Implement a supplier development programme specifically targeting SMEs in poverty-affected regions — with technical and financial support",
+  "Publish a Community Investment Strategy with measurable poverty-reduction outcomes and annual progress reporting"
+],
+example:"<strong>Leading Practice:</strong> IKEA committed to paying all co-workers a living wage by 2023, conducting living wage gap analyses in every country. Unilever's Responsible Sourcing Policy sets minimum living wage standards for all 75,000+ suppliers. Both organisations report that living wage investment is offset by reduced turnover, higher productivity, and supply chain stability.",
+impact:70},
+
+{num:2,pillar:"E",title:"Zero Hunger",subtitle:"End hunger, achieve food security, improved nutrition and sustainable agriculture",
+desc:"Organisations — especially in food, agriculture, and retail — have direct responsibility to eliminate food waste, source sustainably, and support food system resilience.",
+definition:"SDG 2 targets the end of hunger and malnutrition while promoting sustainable agriculture. For organisations, this SDG sits at the intersection of environmental and social responsibility. It encompasses how you manage food waste in your operations, how you source agricultural raw materials, how you support smallholder farmers in your supply chain, and how you contribute to food security in your communities. Food companies carry the greatest responsibility, but any business with a canteen, supply chain using agricultural commodities, or operations in food-insecure regions has a role to play.",
+whyItMatters:"828 million people are affected by hunger globally. Yet one-third of all food produced — 1.3 billion tonnes annually — is lost or wasted. The food system contributes 26% of global greenhouse gas emissions. Organisations that tackle food waste and source sustainably reduce costs, manage agricultural commodity risk, and align with the rapidly tightening regulatory environment on food waste (EU Food Waste Reduction Targets, UK Food and Drink Sustainability Roadmap).",
+requirements:[
+  "Implement a food waste measurement system covering all operations — quantify waste by stage (preparation, plate waste, spoilage) and set a reduction target aligned to the UN's 50% reduction by 2030",
+  "Source all agricultural raw materials from certified sustainable schemes (Rainforest Alliance, Fairtrade, RSPO, MSC, or equivalent) with a time-bound roadmap to full certification coverage",
+  "Disclose Scope 3 agricultural emissions and set reduction targets aligned to the Science Based Targets initiative",
+  "Establish food donation and redistribution partnerships to ensure zero food-fit-for-consumption goes to landfill",
+  "Conduct a biodiversity and deforestation risk assessment for all agricultural supply chains",
+  "Support smallholder farmer capacity and income through supply chain programmes",
+  "Adopt a no-deforestation, no-peat, no-exploitation (NDPE) policy for forest-risk agricultural commodities"
+],
+monitoring:[
+  {metric:"Food Waste Intensity",desc:"kg of food waste per tonne of product produced or per employee. Track reduction trend quarterly"},
+  {metric:"Sustainable Sourcing %",desc:"% of agricultural raw materials sourced from certified sustainable schemes by commodity type"},
+  {metric:"Food Donated",desc:"Tonnes and monetary value of food redirected to communities via food banks or NGO partners"},
+  {metric:"Deforestation-Free Rate",desc:"% of agricultural supply chain verified as deforestation-free through satellite monitoring or audits"},
+  {metric:"Scope 3 Agri Emissions",desc:"tCO₂e attributed to agricultural inputs — tracked against a science-based reduction pathway"},
+  {metric:"Smallholder Reach",desc:"Number of smallholder farmers supported with training, finance, or fair pricing programmes"}
+],
+kpis:[
+  {name:"Food Waste Intensity",desc:"kg waste per tonne output",target:"Target: 50% reduction by 2030"},
+  {name:"Certified Sourcing %",desc:"% agri-materials sustainably certified",target:"Target: 100% by 2025–2030"},
+  {name:"Zero Landfill Food",desc:"% food fit for consumption donated",target:"Target: 100% diversion from landfill"},
+  {name:"Deforestation-Free %",desc:"% supply chain verified DF",target:"Target: 100% high-risk commodities"}
+],
+frameworks:["GRI 306","SASB Food & Beverage","TNFD","CDP Forests","Rainforest Alliance","RSPO","WBCSD Food Reform"],
+actions:[
+  "Set a food waste reduction target aligned to the Champions 12.3 50% by 2030 commitment and publish a quarterly progress dashboard",
+  "Map all forest-risk commodity supply chains (palm oil, soy, beef, timber, cocoa) and commit to a deforestation-free supply chain by 2025",
+  "Join the Food and Land Use Coalition and establish a smallholder farmer support programme in your highest-risk sourcing regions"
+],
+example:"<strong>Leading Practice:</strong> Tesco reduced food waste by 52% across UK operations using a food surplus redistribution app. Nestlé published a deforestation-free supply chain commitment covering all commodities by 2025, backed by satellite monitoring. Both demonstrate that food system responsibility is operationally achievable with the right measurement infrastructure.",
+impact:60},
+
+{num:3,pillar:"S",title:"Good Health & Well-Being",subtitle:"Ensure healthy lives and promote well-being for all at all ages",
+desc:"Protecting every person who works in or is affected by your organisation — through robust OH&S systems, mental health investment, product safety, and community health contributions.",
+definition:"SDG 3 is about healthy lives and well-being for all. For organisations, this translates into four domains of responsibility: (1) Occupational Health & Safety — protecting workers from injury, illness, and psychosocial harm; (2) Employee Well-Being — investing in physical and mental health beyond compliance; (3) Product & Service Safety — ensuring that what you sell does not harm users; and (4) Community Health — contributing positively to health outcomes in communities of operation. An organisation that profits from products or labour while undermining health is one of the most direct SDG violations a business can make.",
+whyItMatters:"Work-related disease and injury costs the global economy $3 trillion annually. Mental health conditions alone account for 12 billion lost working days per year. The WHO estimates that $1 invested in mental health treatment returns $4 in improved productivity. Companies with certified OH&S systems and strong well-being programmes consistently demonstrate lower absenteeism, higher engagement, and better financial performance. Conversely, companies that ignore well-being face rising compensation claims, regulatory fines, reputational damage, and talent loss.",
+requirements:[
+  "Implement an ISO 45001-certified Occupational Health & Safety management system — not just compliance with legal minimums, but a proactive, risk-based approach to hazard elimination",
+  "Conduct regular hazard identification and risk assessments (HIRA) at all workplaces, involving frontline workers",
+  "Publish a workplace mental health strategy with dedicated investment, measurable outcomes, and senior leadership ownership",
+  "Provide comprehensive Employee Assistance Programmes (EAPs) accessible to all employees including part-time, contract, and remote workers",
+  "Establish a rigorous product safety testing and post-market surveillance system — with transparent recall and incident reporting",
+  "Track and report the full suite of OH&S metrics: LTIR, TRIR, illness rate, days lost, and near-miss frequency rate",
+  "Conduct occupational health risk assessments for all chemical, physical, biological, ergonomic, and psychosocial hazards"
+],
+monitoring:[
+  {metric:"Lost Time Injury Rate (LTIR)",desc:"Injuries resulting in lost working time per million hours worked. Global benchmark: <1.0. Target: 0"},
+  {metric:"Total Recordable Incident Rate",desc:"All recordable incidents per million hours. Leading companies track near-misses as a proactive metric"},
+  {metric:"Work-Related Illness Rate",desc:"Occupational illnesses per 1,000 employees — covering physical and psychological conditions"},
+  {metric:"Well-Being Index Score",desc:"Validated composite survey measuring physical, mental, social, and financial well-being dimensions"},
+  {metric:"Mental Health Participation",desc:"% of employees accessing EAP, mental health training, or well-being programmes"},
+  {metric:"Product Safety Incidents",desc:"Number of product safety incidents, recalls, and regulatory actions — tracked and disclosed publicly"}
+],
+kpis:[
+  {name:"LTIR",desc:"Lost time injuries per million hours",target:"Target: 0 (Zero Harm)"},
+  {name:"TRIR",desc:"Total recordable incidents / million hrs",target:"Target: Below industry benchmark"},
+  {name:"Well-Being Index",desc:"Validated employee survey score",target:"Target: Above 70/100"},
+  {name:"Mental Health Access",desc:"% employees with EAP access",target:"Target: 100% of workforce"}
+],
+frameworks:["GRI 403","ISO 45001","SASB","ILO OSH-MS 2001","WHO Healthy Workplaces","OHSAS 18001","SA8000"],
+actions:[
+  "Achieve ISO 45001 certification at all major facilities and embed OH&S KPIs into executive remuneration",
+  "Launch a comprehensive mental health programme: train all managers in mental health first aid, implement a clinical EAP, and publish a mental health disclosure annually",
+  "Set a zero-harm target with a published 5-year safety roadmap including leading and lagging indicators"
+],
+example:"<strong>Leading Practice:</strong> Unilever's Well-Being Programme serves 145,000 employees globally with mental, physical, financial, and purposeful well-being tools — reporting 20%+ improvement in well-being scores. Balfour Beatty operates a zero harm strategy that has reduced LTIR by over 90% in a decade through behaviour-based safety programmes.",
+impact:90},
+
+{num:4,pillar:"S",title:"Quality Education",subtitle:"Ensure inclusive and equitable quality education and promote lifelong learning",
+desc:"Every organisation is an educational institution for its people — investing in skills, development, and digital capability is both a business necessity and a social responsibility.",
+definition:"SDG 4 is about lifelong learning for all. Organisations are major agents of education and skills development in society. Through employee training and development, vocational partnerships, graduate programmes, apprenticeships, digital skills investment, and community education partnerships, companies both build the capabilities they need and fulfil a broader social responsibility to develop human capital. In an era of rapid technological change, the quality and equity of corporate education investment will define both organisational resilience and social impact.",
+whyItMatters:"The World Economic Forum estimates that 85 million jobs globally will be displaced by technology by 2025, while 97 million new roles will emerge — requiring fundamentally different skills. Companies that invest in reskilling and upskilling reduce turnover, build internal talent pipelines, reduce recruitment costs, and create more resilient organisations. Failure to invest in education leaves workers vulnerable and contributes to the societal skills crisis. L&D investment is one of the strongest predictors of employee retention and engagement.",
+requirements:[
+  "Define and disclose minimum annual training investment per employee in hours and monetary terms",
+  "Ensure Individual Development Plans (IDPs) exist for 100% of permanent employees — reviewed at least annually",
+  "Implement a structured digital and AI literacy programme accessible to all employees regardless of role",
+  "Launch or contribute to vocational education: apprenticeships, graduate development, or community skills programmes",
+  "Track and disclose training hours and investment by gender, level, and region to ensure equitable access",
+  "Measure training effectiveness through pre/post assessments, career progression data, and business outcome linkage",
+  "Partner with schools, colleges, or universities in communities of operation — particularly in underserved areas"
+],
+monitoring:[
+  {metric:"Training Hours per Employee",desc:"Average hours of formal and informal training annually, broken down by gender, level, and function"},
+  {metric:"L&D Investment",desc:"Total spend on learning and development as % of total payroll — industry benchmark: 2–4%"},
+  {metric:"IDP Coverage",desc:"% of permanent employees with an active, current Individual Development Plan"},
+  {metric:"Digital Skills Completion",desc:"% of employees completing digital literacy or future skills training programmes"},
+  {metric:"Internal Promotion Rate",desc:"% of senior roles filled internally — a key outcome indicator of development programme quality"},
+  {metric:"Community Education Reach",desc:"Number of individuals in communities benefiting from company-funded education or scholarships"}
+],
+kpis:[
+  {name:"Training Hours/Employee",desc:"Avg annual hours of training",target:"Target: ≥40 hours per employee"},
+  {name:"L&D Investment",desc:"Spend as % of payroll",target:"Benchmark: 2–4% of payroll"},
+  {name:"IDP Coverage",desc:"% employees with active IDP",target:"Target: 100% permanent employees"},
+  {name:"Digital Skills Rate",desc:"% completing digital upskilling",target:"Target: 80% by year 3"}
+],
+frameworks:["GRI 404","SDG 4.4","UNESCO","ILO","WEF Future of Jobs","CIPD Learning Survey"],
+actions:[
+  "Set a minimum training investment target (e.g., 40 hours and £1,000 per employee per year) and make it a Board-level commitment",
+  "Launch a digital literacy programme for all employees starting with the most at-risk roles, partnering with a recognised digital skills provider",
+  "Establish a community scholarship or apprenticeship fund tied to local STEM or vocational education, reporting annually on reach and outcomes"
+],
+example:"<strong>Leading Practice:</strong> Amazon has committed $1.2 billion to upskill 300,000 employees by 2025 through its Career Choice programme, covering digital skills, cloud computing, and trade qualifications. AT&T invested $1 billion in retraining 100,000 employees for tech roles. Both demonstrate that large-scale reskilling is achievable and economically rational.",
+impact:75},
+
+{num:5,pillar:"S",title:"Gender Equality",subtitle:"Achieve gender equality and empower all women and girls",
+desc:"From pay equity to Board parity, preventing harassment to empowering women in supply chains — gender equality is the ESG metric investors, regulators, and talent scrutinise most.",
+definition:"SDG 5 is one of the most scrutinised ESG topics in corporate reporting. It encompasses equal pay and pay transparency, gender-balanced leadership pipelines, prevention of discrimination and harassment, parental leave equity, supply chain gender standards, and enabling women's economic participation more broadly. The intersection of growing regulatory requirements (EU Pay Transparency Directive, UK Gender Pay Gap Reporting) and investor pressure makes gender equality both an ethical imperative and a compliance necessity.",
+whyItMatters:"Closing gender gaps in the workforce could add $12 trillion to global GDP. Yet women still earn approximately 82 cents for every dollar earned by men globally, are underrepresented in senior leadership (under 30% of C-suite roles), and face disproportionate risk of harassment and discrimination. McKinsey's Women in the Workplace report consistently shows companies in the top quartile for gender diversity outperform peers on profitability by 25%. ESG rating agencies increasingly apply significant weight to gender metrics in social scores.",
+requirements:[
+  "Conduct and publish an annual gender pay gap analysis reporting both mean and median gaps, broken down by level and function — not just the regulatory minimum",
+  "Set public, time-bound targets for women's representation in senior leadership, the C-suite, and the Board",
+  "Implement at minimum equal parental leave for all genders — ideally paid leave equivalent regardless of primary/secondary caregiver status",
+  "Publish a zero-tolerance policy on harassment, discrimination, and gender-based violence — with an independent reporting mechanism",
+  "Sign the UN Women's Empowerment Principles (WEPs) and report annually against all seven principles",
+  "Extend gender standards into the supply chain — auditing major suppliers on gender pay, female leadership, and safe working conditions",
+  "Provide mentoring, sponsorship, and development programmes specifically designed to address the gender leadership gap"
+],
+monitoring:[
+  {metric:"Gender Pay Gap",desc:"Mean and median pay gap % across total workforce and by level — reported against prior year trend"},
+  {metric:"Women in Leadership",desc:"% women at senior management, C-suite, and Board level — tracked quarterly against stated targets"},
+  {metric:"Parental Leave Equity",desc:"Uptake rates by gender, average weeks taken, and return-to-work rates after parental leave"},
+  {metric:"Harassment Complaints",desc:"Number of complaints raised, % investigated within SLA, % substantiated, and % resulting in corrective action"},
+  {metric:"Pay Equity (Adjusted)",desc:"Controlled gender pay gap (equal pay for equal work) — the most precise indicator of active discrimination"},
+  {metric:"WEPs Progress",desc:"Self-assessed progress score against the 7 WEPs principles, with third-party verification where possible"}
+],
+kpis:[
+  {name:"Gender Pay Gap",desc:"Mean & median pay gap (target: 0%)",target:"Target: 0% adjusted gap"},
+  {name:"Women in Leadership",desc:"% women in senior management",target:"Target: ≥40% at all levels"},
+  {name:"Parental Leave Equity",desc:"Ratio: primary to secondary leave",target:"Target: Equal leave for all"},
+  {name:"Harassment Resolution",desc:"% cases resolved within SLA",target:"Target: 100% within 30 days"}
+],
+frameworks:["GRI 405","GRI 406","SASB Human Capital","WEPs","UN Women","EU Pay Transparency Directive","Hampton-Alexander Review"],
+actions:[
+  "Publish the full gender pay gap analysis with a corrective action plan, specific targets, and named executive accountability — not just a statutory disclosure",
+  "Join the UN Women's Empowerment Principles and submit an annual CEO Statement of Support with measurable progress",
+  "Launch a sponsorship (not just mentoring) programme for women at middle management level — sponsorship is proven to be 3x more effective than mentoring for closing the leadership gap"
+],
+example:"<strong>Leading Practice:</strong> Citigroup was first to voluntarily disclose its adjusted pay gap (not just the raw gap) — revealing a 1% pay difference and committing to close it. BP has equal parental leave of 20 weeks for all employees globally. Both set new benchmarks for transparency and equity that are becoming the new expected standard.",
+impact:85},
+
+{num:6,pillar:"E",title:"Clean Water & Sanitation",subtitle:"Ensure availability and sustainable management of water and sanitation for all",
+desc:"Water is the resource most at risk from climate change — managing it as a shared, finite resource is both an environmental duty and a core business risk management imperative.",
+definition:"SDG 6 addresses one of the most tangible resource crises of the 21st century. Water scarcity, pollution, and poor sanitation affect billions of people and trillions of dollars of economic activity. For organisations, water stewardship means going beyond simple consumption reporting to understanding the watershed context of every site, managing the quality of water returned to the environment, building resilience to water risk, and contributing to shared water security in communities.",
+whyItMatters:"By 2025, two-thirds of the world's population may face water shortages. Business accounts for an estimated 70% of freshwater withdrawals globally through agriculture and industry. The CDP Water Security Programme found that water-related business risks cost companies $301 billion in 2020 — five times the cost of addressing those risks. Physical water scarcity, regulatory tightening on discharge quality, and community conflict over water access are all material risks that affect operations, supply chains, and social licence to operate.",
+requirements:[
+  "Measure and disclose total water withdrawal by source (municipal, groundwater, surface water, rainwater, third-party) using the GRI 303 methodology",
+  "Conduct a contextual water risk assessment using AQUEDUCT (WRI) or similar tool for every operational site — distinguishing between absolute scarcity, variability, regulatory, reputational, and community risk",
+  "Set a water intensity reduction target (litres per unit of output) AND an absolute reduction target for water-stressed sites",
+  "Implement closed-loop water recycling and recirculation systems at high-consumption, water-stressed sites",
+  "Treat 100% of process wastewater to applicable quality standards before discharge — and verify through regular independent sampling",
+  "Disclose to CDP Water Security annually — targeting a B score minimum, A-list as the excellence standard",
+  "Engage in collective action on watershed stewardship in water-stressed operating areas — working with regulators, communities, and NGOs"
+],
+monitoring:[
+  {metric:"Water Intensity",desc:"m³ of water per tonne/unit of production — tracked monthly, benchmarked against sector average"},
+  {metric:"Water Stressed Withdrawal",desc:"% of total withdrawal drawn from areas with High or Extremely High baseline water stress (WRI AQUEDUCT)"},
+  {metric:"Recycling Rate",desc:"% of water recycled or recirculated within operations — key indicator of circular water management"},
+  {metric:"Wastewater Quality Compliance",desc:"% of discharge samples meeting all applicable water quality parameters — zero exceedances target"},
+  {metric:"CDP Water Score",desc:"Annual CDP Water Security disclosure score — tracks governance, risk, strategy, and performance quality"},
+  {metric:"Watershed Programme Reach",desc:"Number of sites participating in collective watershed stewardship programmes"}
+],
+kpis:[
+  {name:"Water Intensity",desc:"m³ per tonne/unit of production",target:"Target: 20% reduction by 2025"},
+  {name:"Stress Withdrawal %",desc:"% from water-stressed regions",target:"Target: Reduce to below 20%"},
+  {name:"Recycling Rate",desc:"% water recycled/recirculated",target:"Target: ≥30% at stressed sites"},
+  {name:"Wastewater Compliance",desc:"% meeting discharge quality",target:"Target: 100% compliance"}
+],
+frameworks:["GRI 303","CDP Water Security","ISO 14046","AWS Standard","TCFD","UN CEO Water Mandate","SBTi for Nature"],
+actions:[
+  "Conduct a site-level AQUEDUCT water risk assessment and publish a water risk map — prioritising the highest-risk sites for immediate investment",
+  "Set a science-based water target aligned to the Science Based Targets for Nature (SBTN) water guidance and integrate into sustainability strategy",
+  "Implement a closed-loop water recycling programme at the top 3 water-intensive sites within 18 months, targeting at least 25% recirculation"
+],
+example:"<strong>Leading Practice:</strong> Diageo has reduced water consumption per litre of production by 47% since 2007 through water efficiency programmes and closed-loop systems. Levi Strauss & Co. developed Water<Less™ finishing techniques reducing water use in denim production by up to 96%. Both demonstrate that water intensity reduction is achievable even in water-intensive industries.",
+impact:80},
+
+{num:7,pillar:"E",title:"Affordable Clean Energy",subtitle:"Ensure access to affordable, reliable, sustainable and modern energy for all",
+desc:"The energy transition is the single largest lever companies have for reducing their climate impact — and increasingly, a source of competitive advantage and cost certainty.",
+definition:"SDG 7 is the most operationally transformative SDG for most organisations. It requires a fundamental shift in how companies source and use energy — from fossil-fuel dependency to renewable energy procurement, from energy consumption to energy efficiency, and from energy as a cost to be minimised to energy as a strategic resource to be managed. The energy transition is simultaneously the biggest risk and the biggest opportunity in corporate ESG strategy.",
+whyItMatters:"Energy accounts for approximately 73% of global greenhouse gas emissions. For most organisations, energy is the largest single controllable source of Scope 1 and 2 emissions — and often a significant portion of Scope 3 through supply chain and product use. RE100 members have found that renewable energy procurement delivers long-term price certainty that fossil fuels cannot match. Companies that lead the energy transition reduce regulatory risk, attract green capital at lower cost, and position themselves for the low-carbon economy. Those that lag face stranded assets, carbon pricing costs, and investor pressure.",
+requirements:[
+  "Measure and disclose total energy consumption by fuel type and source, disaggregated into Scope 1 (direct combustion) and Scope 2 (purchased electricity) — per GHG Protocol and GRI 302",
+  "Set a renewable electricity target with a specific year of achievement — and join RE100 if feasible",
+  "Implement an ISO 50001 Energy Management System at major facilities to drive systematic energy efficiency improvement",
+  "Set an energy intensity reduction target (energy per unit of output) and an absolute Scope 1+2 reduction target aligned to SBTi 1.5°C",
+  "Procure renewable electricity through the most credible mechanisms in your market hierarchy: on-site generation → PPAs → RECs/GOs",
+  "Disclose energy data to CDP Climate annually — targeting A-list",
+  "Conduct energy audits at all major facilities at least every 4 years — and implement recommendations with defined payback criteria"
+],
+monitoring:[
+  {metric:"Renewable Electricity %",desc:"% of electricity consumption sourced from renewable energy (RECs, PPAs, on-site generation)"},
+  {metric:"Energy Intensity",desc:"MWh per unit of production or per £/$ revenue — track reduction trend against base year"},
+  {metric:"Scope 1+2 Emissions",desc:"tCO₂e from energy combustion and purchased electricity — vs. SBTi reduction pathway"},
+  {metric:"ISO 50001 Coverage",desc:"% of total energy consumption covered by ISO 50001 certified energy management systems"},
+  {metric:"Energy Audit Compliance",desc:"% of major facilities with energy audit completed within required period and recommendations actioned"},
+  {metric:"CDP Climate Energy Score",desc:"Quality of energy and climate disclosure per CDP evaluation — track from B toward A-list"}
+],
+kpis:[
+  {name:"Renewable Electricity",desc:"% electricity from renewables",target:"Target: 100% by 2030 (RE100)"},
+  {name:"Energy Intensity",desc:"MWh per unit of production",target:"Target: 4% annual reduction"},
+  {name:"Scope 2 Reduction",desc:"% reduction vs. base year",target:"SBTi 1.5°C aligned pathway"},
+  {name:"ISO 50001 Coverage",desc:"% of energy under ISO 50001",target:"Target: 100% major sites"}
+],
+frameworks:["GRI 302","TCFD","CDP Climate","RE100","ISO 50001","SBTi","ESOS","EU Energy Efficiency Directive"],
+actions:[
+  "Sign the RE100 commitment and develop a 10-year renewable energy transition plan with milestones for on-site generation, PPA procurement, and phase-out of fossil fuels",
+  "Achieve ISO 50001 certification at the top 5 energy-consuming sites — these typically account for 80%+ of total energy use",
+  "Install on-site solar generation at all owned facilities with available roof space — targeting payback under 7 years and immediate Scope 2 reduction"
+],
+example:"<strong>Leading Practice:</strong> Apple reached 100% renewable electricity for all its global corporate operations and is working to extend this to its entire supply chain through the Supplier Clean Energy Program. IKEA owns 935,000 solar panels and 641 wind turbines, generating more renewable energy than it consumes globally — making it a net energy exporter.",
+impact:95},
+
+{num:8,pillar:"S",title:"Decent Work & Economic Growth",subtitle:"Promote sustained, inclusive and sustainable economic growth, full employment and decent work",
+desc:"The most fundamental social SDG — covering fair wages, freedom of association, no forced or child labour, and ensuring economic growth is shared equitably across the value chain.",
+definition:"SDG 8 sits at the core of what businesses do every day — employ people, create economic value, and participate in global supply chains. Decent work means work that is safe, fairly paid, freely chosen, and respects fundamental rights. Sustainable economic growth means growth that generates jobs, improves living standards, and is environmentally responsible. For organisations, SDG 8 compliance is no longer optional: the EU Corporate Sustainability Due Diligence Directive (CSDDD), UK Modern Slavery Act, German Supply Chain Act, and French Duty of Vigilance Law all create legal obligations to identify and address decent work violations throughout the value chain.",
+whyItMatters:"160 million children are in child labour globally. 40 million people are trapped in modern slavery. Forced labour generates $150 billion in illegal profits each year. For companies, these are not distant problems — they are embedded in global supply chains for electronics, garments, cocoa, rubber, seafood, and many other commodities. Beyond compliance, organisations that invest in decent work see lower turnover, higher productivity, stronger supplier relationships, and reduced supply chain disruption.",
+requirements:[
+  "Conduct comprehensive supply chain due diligence for modern slavery, forced labour, and child labour — covering at minimum Tier 1 and high-risk Tier 2 suppliers",
+  "Publish a Modern Slavery Statement that goes beyond boilerplate — including supply chain mapping, identified risks, remediation actions, and year-on-year improvement",
+  "Respect and actively support freedom of association and collective bargaining rights for all workers, including in countries where legal protections are weak",
+  "Ensure a living wage is paid to all direct employees and publish a roadmap for living wage in the supply chain",
+  "Implement worker voice mechanisms — grievance systems accessible in local languages to supply chain workers, not just direct employees",
+  "Track and disclose voluntary and involuntary turnover, distinguishing between levels and demographics",
+  "Disclose CEO-to-median worker pay ratio as an indicator of equitable value distribution"
+],
+monitoring:[
+  {metric:"Modern Slavery Coverage",desc:"% of Tier 1 and Tier 2 supply chain covered by modern slavery risk assessment — update annually"},
+  {metric:"Living Wage Gap",desc:"% of direct employees below living wage benchmark — target 0%; supply chain gap reported separately"},
+  {metric:"Voluntary Turnover",desc:"Annual voluntary turnover rate by level and region — high turnover is a leading indicator of poor working conditions"},
+  {metric:"CBA Coverage",desc:"% of workforce covered by collective bargaining agreements — by country and employment category"},
+  {metric:"Worker Voice Usage",desc:"Grievance mechanism uptake: reports per 1,000 workers, resolution rate, and resolution time"},
+  {metric:"CEO Pay Ratio",desc:"CEO total remuneration as a multiple of median employee pay — published annually with contextual narrative"}
+],
+kpis:[
+  {name:"Living Wage Coverage",desc:"% employees at or above living wage",target:"Target: 100% direct employees"},
+  {name:"Modern Slavery Scope",desc:"% supply chain risk assessed",target:"Target: 100% Tier 1; 80% Tier 2"},
+  {name:"Voluntary Turnover",desc:"Annual voluntary attrition rate",target:"Target: Below industry benchmark"},
+  {name:"CBA Coverage",desc:"% covered by collective bargaining",target:"Disclose % and trend annually"}
+],
+frameworks:["GRI 401","GRI 402","GRI 407","GRI 408","GRI 409","ILO Core Conventions","UN Guiding Principles","Modern Slavery Act","EU CSDDD"],
+actions:[
+  "Publish a comprehensive Modern Slavery Statement with Tier 1 and Tier 2 supply chain mapping, identified high-risk geographies/sectors, remediation actions, and measurable improvement year-on-year",
+  "Implement a worker voice platform (e.g., Ulula, Laborlink, or equivalent) accessible to all supply chain workers — not just direct employees — with an independent grievance escalation pathway",
+  "Achieve Living Wage Employer accreditation for direct employees and set a target date for living wage coverage across Tier 1 supply chain"
+],
+example:"<strong>Leading Practice:</strong> Marks & Spencer publishes one of the most detailed Modern Slavery statements in retail, including supplier maps, identified risks, and year-on-year remediation progress. Patagonia has been a living wage employer since 1996 and actively supports worker rights in its supply chain through the Fair Labor Association.",
+impact:85},
+
+{num:9,pillar:"G",title:"Industry, Innovation & Infrastructure",subtitle:"Build resilient infrastructure, promote sustainable industrialisation and foster innovation",
+desc:"Innovation investment, clean technology leadership, and resilient infrastructure are not just sustainability obligations — they are the core drivers of long-term competitive advantage.",
+definition:"SDG 9 challenges organisations to think about how they innovate, what they build, and how resilient their industrial systems are. It encompasses R&D investment strategy, clean technology development and adoption, digital transformation, supply chain infrastructure resilience, and the role companies play in supporting the wider innovation ecosystem — through SME partnerships, open innovation, and technology transfer. In an era of climate transition and digital disruption, innovation and infrastructure are existential strategic priorities.",
+whyItMatters:"The International Energy Agency estimates that two-thirds of the technologies needed to achieve net zero by 2050 do not yet exist at commercial scale — they require development now. Companies that lead on clean technology and digital innovation build first-mover advantage, attract the best talent, access green financing at preferential rates, and develop the next generation of competitive products and services. Those that under-invest in innovation face technological obsolescence, stranded assets, and competitive displacement.",
+requirements:[
+  "Disclose total R&D investment as an absolute amount and as a % of revenue — with a breakdown by sustainable and clean technology categories",
+  "Publish an innovation strategy that explicitly links innovation investment to sustainability priorities (decarbonisation, circular economy, biodiversity, social impact)",
+  "Conduct a supply chain resilience assessment covering concentration risk, geographic risk, and climate-related infrastructure vulnerability",
+  "Implement a digital transformation programme that improves sustainability performance: smart metering, predictive maintenance, supply chain traceability, and resource optimisation",
+  "Support SME and startup suppliers through development programmes, joint innovation projects, or innovation funds",
+  "Measure and disclose the % of revenue generated from products or services with a defined positive sustainability benefit",
+  "Report on technology transfer activities to suppliers or communities in developing markets"
+],
+monitoring:[
+  {metric:"R&D Investment",desc:"Total R&D spend (£/$) and as % of revenue — with breakdown of sustainable technology allocation"},
+  {metric:"Clean Tech R&D %",desc:"% of total R&D investment directed to sustainable, low-carbon, or circular economy technologies"},
+  {metric:"Sustainability Revenue",desc:"% of total revenue from products/services with documented positive sustainability impact"},
+  {metric:"Supply Chain Resilience",desc:"Score from structured resilience assessment — covering 20+ risk parameters across Tier 1 and Tier 2"},
+  {metric:"SME Programme Reach",desc:"Number of SME suppliers supported through innovation or development programmes — with outcome measures"},
+  {metric:"Digital Maturity Score",desc:"Composite measure of digital technology adoption across operations — track annually"}
+],
+kpis:[
+  {name:"R&D Investment %",desc:"R&D as % of revenue",target:"Disclose vs. sector benchmark"},
+  {name:"Clean Tech R&D %",desc:"% of R&D in sustainable tech",target:"Target: ≥30% of total R&D"},
+  {name:"Sustainability Revenue",desc:"Revenue from sustainable products",target:"Grow annually — set target"},
+  {name:"Resilience Coverage",desc:"% Tier 1 with resilience plans",target:"Target: 100% Tier 1 suppliers"}
+],
+frameworks:["GRI 203","SASB","ISO 56001","TCFD","WEF Global Competitiveness","OECD Innovation","EU Taxonomy Innovation"],
+actions:[
+  "Set a clean technology R&D investment target (minimum 30% of total R&D) and disclose annually with examples of sustainable innovation projects",
+  "Develop a supply chain resilience programme with Tier 1 and Tier 2 suppliers including dual-sourcing strategies, geographic diversification, and climate vulnerability mapping",
+  "Establish an SME innovation partnership programme — pairing your organisation's technology expertise with SME supplier capacity to drive shared sustainability solutions"
+],
+example:"<strong>Leading Practice:</strong> Siemens invested €5.2 billion in R&D in 2023, with over 40% directed to sustainable infrastructure and digitalisation. Microsoft committed to being carbon negative by 2030 and has invested $1 billion in its Climate Innovation Fund to support clean technology development across its supplier and partner ecosystem.",
+impact:65},
+
+{num:10,pillar:"S",title:"Reduced Inequalities",subtitle:"Reduce inequality within and among countries",
+desc:"Pay equity, inclusive hiring, fair executive compensation, and equitable access to opportunity are becoming central to the 'S' in ESG — and central to long-term business resilience.",
+definition:"SDG 10 asks organisations to examine and address the inequalities they create or perpetuate — through pay structures, hiring practices, procurement choices, and the geographic distribution of economic value. Income inequality within organisations (CEO-to-worker pay ratios), between demographic groups (gender and ethnicity pay gaps), and between geographies (value distribution across supply chains) are all dimensions that investors, regulators, and civil society are increasingly scrutinising. The EU Pay Transparency Directive, mandatory ethnicity pay gap reporting proposals, and B Team Responsible Tax principles all reflect this growing expectation.",
+whyItMatters:"The CEO-to-median worker pay ratio has grown from ~20:1 in 1965 to over 350:1 in many large corporations today. Research consistently shows that high inequality within organisations reduces collaboration, trust, and innovation — and increases staff turnover. Externally, companies that fail to distribute economic value equitably across supply chains contribute to the inequality that fuels social instability, political risk, and ultimately market instability. Investors in ESG funds are now specifically screening for pay equity and diversity metrics.",
+requirements:[
+  "Calculate and publicly disclose the CEO-to-median employee pay ratio annually — with a narrative on pay philosophy and equity",
+  "Conduct an intersectional pay equity analysis by gender, ethnicity, disability, and age — reporting both raw and adjusted gaps",
+  "Set public, time-bound targets for increasing representation of underrepresented groups at all levels of the organisation",
+  "Implement an inclusive procurement policy with defined targets for spend with diverse suppliers (minority-owned, women-owned, disability-owned businesses)",
+  "Disclose workforce composition data by demographic category against the demographics of the communities you operate in",
+  "Ensure that pay band structures, bonus programmes, and benefits are equitable — not disadvantaging part-time, contract, or lower-grade workers",
+  "Ensure living wages are paid throughout the supply chain — not just to direct employees (SDG 8 linkage)"
+],
+monitoring:[
+  {metric:"CEO Pay Ratio",desc:"CEO total remuneration as multiple of median employee pay — report vs. industry benchmark and prior year"},
+  {metric:"Adjusted Pay Gap",desc:"Controlled pay gap by gender and ethnicity (same role, same level, same tenure) — target: 0%"},
+  {metric:"Diverse Procurement",desc:"% of total procurement spend with diverse supplier categories — tracked quarterly"},
+  {metric:"Representation Index",desc:"Workforce diversity vs. community demographics — are you reflecting your community?"},
+  {metric:"Promotion Equity",desc:"Promotion rates by gender, ethnicity, and disability — identifies systemic barriers to advancement"},
+  {metric:"Pay Band Transparency",desc:"% of employees who know the salary band for their role — an indicator of pay culture and equity"}
+],
+kpis:[
+  {name:"CEO Pay Ratio",desc:"CEO vs. median employee pay",target:"Disclose and reduce trend annually"},
+  {name:"Adjusted Pay Gap",desc:"Controlled gap by gender & ethnicity",target:"Target: 0% adjusted gap"},
+  {name:"Diverse Procurement",desc:"% spend with diverse suppliers",target:"Target: ≥10% of total procurement"},
+  {name:"Inclusive Hiring Rate",desc:"% hires from underrepresented groups",target:"Target: ≥ community demographics"}
+],
+frameworks:["GRI 405","GRI 406","SASB Human Capital","B Team Responsible Tax","EU Pay Transparency Directive","Parker Review","EHRC"],
+actions:[
+  "Publish the CEO pay ratio with a genuine narrative — not just a compliance disclosure — explaining how pay equity is managed and what the target trajectory is",
+  "Set a diverse supplier spend target (minimum 10% of total procurement) with a named executive owner, quarterly reporting, and supplier development support",
+  "Conduct an intersectional pay equity audit covering gender, ethnicity, disability, and age — publish the findings and corrective action plan with annual progress updates"
+],
+example:"<strong>Leading Practice:</strong> Starbucks publishes a comprehensive pay equity report covering race and gender, achieving 100% pay equity for like-for-like roles in the US. Accenture has a 50% women, 25% diverse hire target and publishes detailed workforce diversity data annually — with named accountability at CEO level.",
+impact:70},
+
+{num:11,pillar:"ES",title:"Sustainable Cities & Communities",subtitle:"Make cities inclusive, safe, resilient and sustainable",
+desc:"How your buildings perform, how your logistics move, and how you invest in communities — every urban footprint decision shapes the sustainability of the cities you operate in.",
+definition:"SDG 11 is about the sustainability of human settlements — the places where most people live, work, and interact with the economy. For organisations, this SDG translates into the environmental performance of physical assets (buildings and facilities), the urban emissions of logistics and employee mobility, the social investment in urban communities, and the design of places that contribute positively to urban resilience. With buildings accounting for 40% of global energy use and 36% of CO₂ emissions, the built environment is one of the most significant levers available to reduce the urban carbon footprint.",
+whyItMatters:"Over 55% of the world's population lives in cities — projected to reach 68% by 2050. Urban areas are both major contributors to environmental problems (energy, waste, transport emissions) and major victims of climate impacts (heat islands, flooding, air quality). Organisations that certify their buildings to green standards, reduce logistics emissions, and invest in urban communities reduce costs, attract talent, fulfil tightening building regulations (EPBD, MEES, LEED mandates), and strengthen their social licence to operate.",
+requirements:[
+  "Certify all major facilities to recognised green building standards: LEED (Gold or Platinum), BREEAM (Excellent or Outstanding), or national equivalent",
+  "Measure and disclose Scope 3 Category 4 (upstream transport/distribution) and Category 7 (employee commuting) emissions",
+  "Develop a logistics decarbonisation plan: transitioning fleet to EV, optimising delivery routes, and partnering with low-carbon logistics providers",
+  "Conduct climate resilience assessments for all major owned and leased assets — identifying physical risks from flood, heat, and extreme weather",
+  "Invest in urban community development programmes in areas of operation — with measurable social outcomes",
+  "Implement active travel and public transport incentives for employees to reduce commuting emissions",
+  "Engage constructively with urban planning processes and support affordable housing initiatives where relevant"
+],
+monitoring:[
+  {metric:"Green Building Coverage",desc:"% of total floor space certified to LEED/BREEAM or equivalent — track against annual certification target"},
+  {metric:"Logistics Scope 3 Emissions",desc:"tCO₂e from upstream and downstream transport per unit — vs. decarbonisation pathway"},
+  {metric:"EV Fleet Transition",desc:"% of company vehicle fleet electrified — with charge point infrastructure coverage"},
+  {metric:"Commuting Emissions",desc:"Scope 3 Category 7 tCO₂e per employee — track against baseline and active travel programme impact"},
+  {metric:"Urban Investment",desc:"Community investment in urban areas: spend (£/$) and social outcomes (beneficiaries, services delivered)"},
+  {metric:"Asset Resilience Coverage",desc:"% of major assets with a completed climate physical risk assessment"}
+],
+kpis:[
+  {name:"Green Building %",desc:"% floor space LEED/BREEAM certified",target:"Target: 100% major facilities by 2030"},
+  {name:"EV Fleet %",desc:"% company vehicles electrified",target:"Target: 100% by 2030"},
+  {name:"Logistics Intensity",desc:"Scope 3 logistics tCO₂e per unit",target:"Target: 30% reduction by 2030"},
+  {name:"Urban Investment",desc:"Community spend in urban areas",target:"Set target aligned to community needs"}
+],
+frameworks:["GRI 203","ISO 37101","LEED","BREEAM","TCFD Physical Risk","C40 Cities Network","Urban Land Institute"],
+actions:[
+  "Commit to BREEAM Excellent or LEED Gold as the minimum standard for all new builds and major refurbishments — include this in capital expenditure approval criteria",
+  "Publish a logistics decarbonisation roadmap targeting 100% zero-emission delivery by 2035, with annual milestones and investment commitments",
+  "Launch an urban community investment programme in your highest-impact operating locations — co-designed with communities and reporting measurable outcomes"
+],
+example:"<strong>Leading Practice:</strong> BT Group has achieved BREEAM Outstanding certification for its major data centres, reducing energy costs by 40%. DHL has committed to zero-emission logistics by 2050, with 60% clean operations by 2030, deploying 27,000 EVs globally. Both illustrate that sustainable urban operations are both environmentally responsible and commercially advantageous.",
+impact:60},
+
+{num:12,pillar:"E",title:"Responsible Consumption & Production",subtitle:"Ensure sustainable consumption and production patterns",
+desc:"The circular economy imperative — designing out waste, managing Scope 3 value chain emissions, and transitioning to sustainable materials is the decade's defining production challenge.",
+definition:"SDG 12 is the production and consumption SDG — arguably the most operationally comprehensive of all 17. It touches every aspect of how organisations source materials, design products, manage waste, procure goods and services, and communicate sustainability to customers. The shift from a linear 'take-make-dispose' economy to a circular 'design-use-recover' economy is simultaneously the biggest operational challenge and the biggest opportunity for organisations in the 2020s. Extended Producer Responsibility (EPR) legislation, plastic packaging taxes, Scope 3 reporting requirements, and green claims regulations are all accelerating the regulatory pressure.",
+whyItMatters:"The world uses 1.75 planets' worth of natural resources annually. Material consumption is projected to double by 2060 under business-as-usual. The circular economy could deliver $4.5 trillion in economic benefits by 2030 (Accenture). For organisations, moving to circular design reduces material costs, builds supply chain resilience, creates new business model opportunities (product-as-a-service, take-back schemes, remanufacturing), and gets ahead of rapidly tightening regulations on packaging, waste, and product design.",
+requirements:[
+  "Implement a zero-waste-to-landfill programme across all operations — with verified waste diversion data and third-party audit",
+  "Design products for circularity: durability, repairability, disassembly, and end-of-life recyclability — using recognised circular design frameworks (Ellen MacArthur Foundation Butterfly Diagram)",
+  "Measure and disclose full Scope 3 GHG inventory across all 15 categories — with particular focus on Categories 1 (purchased goods), 11 (use of sold products), and 12 (end-of-life treatment)",
+  "Implement a sustainable procurement policy with environmental and social criteria covering at minimum 100% of direct material spend",
+  "Eliminate single-use plastics from products and operations and publish a plastic footprint reduction roadmap",
+  "Publish product lifecycle assessments (LCAs) for key product lines — disclosing carbon, water, and material footprints",
+  "Implement a product take-back or extended producer responsibility scheme"
+],
+monitoring:[
+  {metric:"Waste Diversion Rate",desc:"% of total waste diverted from landfill (recycling, composting, energy recovery) — target 100%"},
+  {metric:"Circular Design Coverage",desc:"% of products by revenue with circular design features: durability standards, recyclable materials, take-back programme"},
+  {metric:"Scope 3 Coverage",desc:"% of Scope 3 categories fully measured and disclosed — with intensity metrics for highest-impact categories"},
+  {metric:"Recycled Material Content",desc:"% recycled or responsibly sourced material as % of total materials used — track by material type"},
+  {metric:"Single-Use Plastic Elimination",desc:"% reduction in single-use plastic from baseline — tracked quarterly against phase-out schedule"},
+  {metric:"Sustainable Procurement",desc:"% of direct material spend meeting defined environmental and social criteria"}
+],
+kpis:[
+  {name:"Waste Diversion Rate",desc:"% waste diverted from landfill",target:"Target: 100% (zero to landfill)"},
+  {name:"Circular Design %",desc:"% products with circular features",target:"Target: 100% new products by 2027"},
+  {name:"Scope 3 Coverage",desc:"% of categories measured",target:"Target: All 15 categories disclosed"},
+  {name:"Recycled Content %",desc:"% recycled materials in products",target:"Target: 50% recycled by 2030"}
+],
+frameworks:["GRI 301","GRI 302","GRI 303","GRI 305","GRI 306","CDP","Ellen MacArthur Foundation","EU Circular Economy Action Plan","EPR Regulations"],
+actions:[
+  "Set a zero-waste-to-landfill target with a published roadmap, quarterly progress dashboard, and third-party waste audit verification",
+  "Commission lifecycle assessments for your top 3 product lines and use LCA data to design the next generation with measurably lower environmental footprint",
+  "Join the Ellen MacArthur Foundation New Plastics Economy Global Commitment and publish an annual plastic footprint with a reduction pathway"
+],
+example:"<strong>Leading Practice:</strong> Interface (carpet manufacturer) has operated a Mission Zero programme since 1994, eliminating waste, emissions, and harmful materials. By 2019 it achieved carbon neutrality in manufacturing. Renault's Refactory in Flins is the first facility dedicated entirely to circular economy operations — remanufacturing, reusing, and recycling vehicles and components.",
+impact:90},
+
+{num:13,pillar:"E",title:"Climate Action",subtitle:"Take urgent action to combat climate change and its impacts",
+desc:"The defining ESG challenge of our era — science-based emissions reductions, credible net zero transition plans, TCFD disclosure, and climate risk governance are now the minimum expected standard.",
+definition:"SDG 13 is the most material ESG topic for the vast majority of organisations. Climate change is simultaneously the greatest environmental risk (physical impacts on assets, operations, and supply chains) and the greatest economic opportunity (the low-carbon transition creates new markets, technologies, and business models). It requires organisations to measure and reduce their greenhouse gas emissions across all three Scopes, develop credible net zero transition plans, integrate climate risk into governance and financial reporting, and actively engage with policymakers on climate ambition.",
+whyItMatters:"The IPCC's Sixth Assessment Report is unequivocal: human-induced climate change is already causing widespread disruption. Every fraction of a degree of warming matters for physical risk — from flooding and drought to heat stress and supply chain disruption. The economic cost of unmitigated climate change is estimated at 10–23% of global GDP. Regulatory requirements are accelerating: TCFD is mandatory in the UK, EU, and many Asian markets; ISSB climate standards (IFRS S2) are becoming the global baseline; EU Taxonomy alignment is required for green finance; and carbon pricing is expanding globally. Companies without credible climate plans face investor divestment, regulatory penalties, stranded assets, and loss of social licence.",
+requirements:[
+  "Measure and disclose Scope 1 (direct), Scope 2 (energy indirect), and Scope 3 (value chain) GHG emissions using the GHG Protocol Corporate Standard",
+  "Set Science Based Targets (SBTi) aligned to 1.5°C for Scope 1, 2, and 3 — validated by the Science Based Targets initiative",
+  "Develop a credible Net Zero Transition Plan with milestones, capital allocation requirements, policy asks, and executive accountability — aligned to TCFD and ISSB S2",
+  "Implement TCFD-aligned disclosure covering governance, strategy, risk management, and metrics/targets for both physical and transition climate risks",
+  "Set an internal carbon price (shadow or actual) and apply it to all major capital investment decisions to drive low-carbon choices",
+  "Disclose annually to CDP Climate — targeting A-list status",
+  "Integrate climate risk into the enterprise risk register and ensure Board-level oversight of climate strategy"
+],
+monitoring:[
+  {metric:"Scope 1 Emissions",desc:"Direct GHG emissions (tCO₂e) from owned operations — absolute and intensity, vs. SBTi reduction pathway"},
+  {metric:"Scope 2 Emissions",desc:"Indirect emissions from purchased energy — both market-based (reflecting renewable procurement) and location-based"},
+  {metric:"Scope 3 Coverage",desc:"% of Scope 3 categories measured and disclosed — target all 15 categories, prioritise material categories first"},
+  {metric:"SBTi Progress",desc:"Actual emissions reduction vs. SBTi 1.5°C pathway — quantify the gap and actions to close it annually"},
+  {metric:"Internal Carbon Price",desc:"$/£ per tCO₂e applied to investment decisions — track vs. shadow price recommendations (currently $50–200/tonne for 2030)"},
+  {metric:"CDP Climate Score",desc:"Annual CDP score — progress from C toward A-list; A-list is global best practice standard"}
+],
+kpis:[
+  {name:"Scope 1+2 Emissions",desc:"tCO₂e vs. base year & pathway",target:"SBTi 1.5°C aligned reduction"},
+  {name:"Scope 3 Coverage",desc:"% of categories measured",target:"Target: All 15 categories"},
+  {name:"Net Zero Year",desc:"Committed net zero target year",target:"Target: By 2050 at latest; 2040 ambition"},
+  {name:"CDP Climate Score",desc:"Annual CDP rating",target:"Target: A-list — global best practice"}
+],
+frameworks:["GRI 305","TCFD","SBTi","CDP Climate","ISO 14064","GHG Protocol","ISSB IFRS S2","Paris Agreement","EU Taxonomy","Net Zero Standard"],
+actions:[
+  "Submit SBTi commitment immediately (within 24 months: validated targets) — covering Scope 1, 2, and Scope 3 emissions from your most material categories (typically Scope 3 is 70–90% of total footprint)",
+  "Publish a TCFD-aligned Climate Transition Plan with physical and transition risk analysis, capital allocation to low-carbon solutions, and Board-approved net zero pathway",
+  "Set an internal carbon price of at minimum $50/tCO₂e and apply it to all capex decisions above a defined threshold — report how many investment decisions were influenced by the carbon price annually"
+],
+example:"<strong>Leading Practice:</strong> Microsoft became carbon negative in 2020, removing more carbon than it emits. By 2050 it commits to remove all the carbon it has emitted since its founding in 1975. Apple's supply chain is on track to be 100% carbon neutral by 2030 through its Supplier Clean Energy Program. Both demonstrate that ambitious net zero commitments are achievable with consistent investment and supplier engagement.",
+impact:100},
+
+{num:14,pillar:"E",title:"Life Below Water",subtitle:"Conserve and sustainably use the oceans, seas and marine resources",
+desc:"Ocean health is directly linked to corporate plastic footprints, seafood sourcing, wastewater quality, and shipping emissions — requiring active stewardship, not just compliance.",
+definition:"SDG 14 focuses on the world's oceans, seas, and marine ecosystems — arguably humanity's most critical and most threatened natural system. For organisations, ocean impact comes from multiple channels: plastic packaging and product waste that enters ocean pathways; seafood and marine ingredient sourcing from over-exploited fisheries; wastewater discharge affecting coastal and marine water quality; and GHG emissions driving ocean acidification and warming. As ocean-related regulations tighten (EU Single-Use Plastics Directive, Extended Producer Responsibility, MARPOL marine pollution convention), organisations face both compliance requirements and growing expectations from consumers, investors, and civil society.",
+whyItMatters:"An estimated 8 million tonnes of plastic enter the ocean every year — equivalent to a garbage truck every minute. Ocean acidification (driven by CO₂ absorption) has increased by 26% since pre-industrial times, threatening coral reefs and shellfish. Marine fisheries provide food and livelihoods for 600 million people. The 'blue economy' is valued at $1.5 trillion annually. Companies that fail to address their ocean footprint face regulatory penalties, NGO campaigns, consumer boycotts, and supply chain disruption from ecosystem collapse.",
+requirements:[
+  "Conduct a plastic material flow analysis covering all single-use plastic in products and operations — and publish a phase-out roadmap with specific product timelines",
+  "Source 100% of seafood, fish-derived ingredients, and marine products from Marine Stewardship Council (MSC), Aquaculture Stewardship Council (ASC), or equivalent certification",
+  "Ensure all wastewater discharged from facilities meets applicable marine water quality standards — with independent sampling and public reporting of results",
+  "Measure and disclose ocean-related Scope 3 emissions: international shipping (Category 4), fishing vessel operations, and coastal tourism impacts",
+  "Fund or participate in at least one ocean conservation or plastic recovery programme with measurable outcomes",
+  "Engage with Extended Producer Responsibility schemes for plastic packaging in all relevant markets"
+],
+monitoring:[
+  {metric:"Single-Use Plastic Elimination",desc:"% reduction in single-use plastic by weight from baseline — tracked against published phase-out schedule"},
+  {metric:"Sustainable Seafood %",desc:"% of seafood and marine ingredients by spend/weight from MSC, ASC, or equivalent certified sources"},
+  {metric:"Wastewater Marine Quality",desc:"% of marine-adjacent discharge samples meeting all quality parameters — tracked monthly at relevant sites"},
+  {metric:"Plastic Packaging Recyclability",desc:"% of plastic packaging that is reusable, recyclable, or compostable by 2025 — per New Plastics Economy commitment"},
+  {metric:"Ocean Programme Investment",desc:"£/$ invested in ocean conservation or clean-up programmes — and km of coastline or tonnes of plastic recovered"},
+  {metric:"EPR Compliance Rate",desc:"% of markets where you operate EPR obligations met — fees paid and collection targets achieved"}
+],
+kpis:[
+  {name:"Plastic Reduction",desc:"% reduction in single-use plastic",target:"Target: 100% elimination by 2025–2030"},
+  {name:"Sustainable Seafood",desc:"% from MSC/ASC certified sources",target:"Target: 100% by 2025"},
+  {name:"Wastewater Compliance",desc:"% samples meeting marine quality",target:"Target: 100% compliance"},
+  {name:"Recyclable Packaging",desc:"% plastic packaging recyclable",target:"Target: 100% by 2025"}
+],
+frameworks:["GRI 304","GRI 306","Ocean Panel","MSC","ASC","New Plastics Economy","MARPOL","EU SUP Directive","EPR Regulations"],
+actions:[
+  "Publish a single-use plastic elimination roadmap with specific product phase-out dates and verified annual progress against the Ellen MacArthur Foundation New Plastics Economy Global Commitment",
+  "Transition 100% of seafood and marine ingredients to MSC or ASC certified sources within 3 years — starting with the highest-volume, highest-risk categories",
+  "Partner with a credible ocean conservation organisation on a programme with clear outcomes: tonnes of plastic removed, hectares of habitat protected, or fishing communities supported"
+],
+example:"<strong>Leading Practice:</strong> Waitrose was the first retailer to sign the UK Plastics Pact, committing to 100% reusable, recyclable, or compostable packaging by 2025 and has made plastic-free own-label products a core range proposition. Iceland Foods committed to eliminating plastic packaging from all own-label products by 2023 — driving significant consumer and media recognition.",
+impact:65},
+
+{num:15,pillar:"E",title:"Life on Land",subtitle:"Protect, restore and promote sustainable use of terrestrial ecosystems",
+desc:"The biodiversity crisis is the next frontier of ESG — TNFD disclosure, no-deforestation commitments, and nature-positive strategies are transitioning from leadership to expected practice.",
+definition:"SDG 15 focuses on terrestrial biodiversity and ecosystem health — the forests, grasslands, wetlands, and soils that underpin all life on land, including human economies. The 2022 Kunming-Montreal Global Biodiversity Framework (the 'nature COP') set a target of protecting 30% of land and ocean by 2030 (30x30). For organisations, SDG 15 is gaining rapid ESG prominence through the launch of the TNFD framework in 2023, growing investor focus on nature-related financial risks, and tightening regulation on deforestation (EU Deforestation Regulation, effective 2025) and biodiversity net gain (UK BNG mandate, 2024). The emergence of Science Based Targets for Nature (SBTN) is completing the same mandatory-feeling trajectory that SBTi created for climate.",
+whyItMatters:"One million species are threatened with extinction — the fastest rate in human history. Nature loss costs the global economy an estimated $10 trillion in lost ecosystem services annually. Over half of global GDP ($44 trillion) is highly or moderately dependent on nature. For organisations, this means nature loss is a material financial risk — through supply chain disruption (loss of pollinators, water, fertile soil), regulatory exposure (EU Deforestation Regulation, BNG mandate), and reputational risk. The TNFD framework, followed by 1,000+ companies in its first year, is accelerating this from fringe to mainstream.",
+requirements:[
+  "Adopt a no-deforestation, no-peat, no-exploitation (NDPE) policy covering 100% of forest-risk commodities (palm oil, soy, beef, leather, timber, cocoa, rubber, paper) in your supply chain",
+  "Conduct a TNFD-aligned nature risk and opportunity assessment using the LEAP (Locate, Evaluate, Assess, Prepare) approach — prioritising material sites and supply chain categories",
+  "Set a biodiversity net gain (BNG) commitment for all land development activities — using the Biodiversity Net Gain metric or equivalent",
+  "Measure and disclose land use change, habitat destruction, and ecosystem conversion attributable to operations and supply chains",
+  "Implement a land restoration programme — contributing to the global 30x30 target",
+  "Pursue Science Based Targets for Nature (SBTN) — covering land, freshwater, and ocean dimensions",
+  "Engage suppliers on deforestation-free sourcing through satellite monitoring, certification, and supplier dialogues"
+],
+monitoring:[
+  {metric:"Deforestation-Free Rate",desc:"% of forest-risk commodity supply chain verified as deforestation-free via satellite monitoring or independent audit"},
+  {metric:"Land Restored",desc:"Hectares of land restored, rewilded, or protected — tracked annually against cumulative target"},
+  {metric:"BNG Score",desc:"Biodiversity net gain score for all material land development projects — target: net positive outcome"},
+  {metric:"TNFD Disclosure Quality",desc:"Completeness of TNFD LEAP assessment and quality of nature risk disclosure — self-assessed and externally verified"},
+  {metric:"NDPE Compliance Rate",desc:"% of Tier 1 suppliers of forest-risk commodities with verified NDPE policy compliance"},
+  {metric:"Certification Coverage",desc:"% of forest-risk commodities covered by FSC, RSPO, RTRS, or other credible sustainability certification"}
+],
+kpis:[
+  {name:"Deforestation-Free %",desc:"% supply chain verified DF",target:"Target: 100% high-risk commodities"},
+  {name:"Land Restored (ha)",desc:"Hectares restored or protected",target:"Set annual hectare target"},
+  {name:"BNG Score",desc:"Biodiversity net gain on sites",target:"Target: Net positive all developments"},
+  {name:"TNFD Alignment",desc:"TNFD disclosure completeness",target:"Target: Full TNFD alignment by 2026"}
+],
+frameworks:["GRI 304","TNFD","SBTN","Kunming-Montreal GBF","RSPO","FSC","EU Deforestation Regulation","UK BNG Mandate","IUCN Red List"],
+actions:[
+  "Adopt and publish an NDPE policy covering 100% of forest-risk commodity supply chains — backed by satellite monitoring (Global Forest Watch, Starling) and supplier verification",
+  "Conduct a TNFD LEAP assessment for your three highest-impact sites and supply chain categories — publish the outcomes in your next sustainability report",
+  "Set a Science Based Target for Nature (SBTN) and publish a nature transition plan — mirroring the trajectory that climate commitments have taken over the past decade"
+],
+example:"<strong>Leading Practice:</strong> Unilever's Regenerative Agriculture programme covers 100% of its agricultural raw materials with a deforestation-free commitment, backed by satellite monitoring. Kingfisher (B&Q) achieves 100% responsibly sourced timber and wood products (FSC or equivalent) — one of the most comprehensive timber sourcing standards in retail. Both demonstrate that nature-positive supply chain commitments are operational today.",
+impact:75},
+
+{num:16,pillar:"G",title:"Peace, Justice & Strong Institutions",subtitle:"Promote peaceful and inclusive societies, access to justice, and effective institutions",
+desc:"Anti-corruption governance, transparent lobbying, whistleblower protection, and responsible tax are the pillars of SDG 16 — and increasingly, the governance metrics that make or break ESG credibility.",
+definition:"SDG 16 is the governance SDG — it addresses the conditions that allow societies and economies to function fairly and transparently. For organisations, this translates into five core governance domains: (1) Anti-corruption and anti-bribery — zero tolerance, active prevention, and transparent reporting; (2) Responsible lobbying — transparency about political influence; (3) Whistleblower protection — creating safe channels for reporting wrongdoing; (4) Tax responsibility — paying taxes fairly and transparently, not just legally; and (5) Human rights and rule of law — respecting legal systems and human rights frameworks. Tightening regulation (UK Bribery Act, FCPA, EU Anti-Money Laundering, CSRD governance requirements) and investor focus on governance quality make SDG 16 compliance a minimum expectation.",
+whyItMatters:"Corruption costs the global economy $2.6 trillion annually — 5% of global GDP. Tax evasion deprives governments of an estimated $500 billion per year that could fund public services. Companies that fail on governance face legal liability, regulatory fines, reputational destruction, and loss of investor confidence. But governance is not just about risk avoidance: companies with strong ethical governance consistently outperform on trust, talent attraction, and sustainable financial performance. The correlation between governance quality and long-term shareholder returns is one of the most robust findings in ESG research.",
+requirements:[
+  "Implement an ISO 37001-certified Anti-Bribery Management System with annual risk assessments, training, and documented due diligence for high-risk business relationships",
+  "Publish an annual lobbying and political contribution disclosure — listing all material lobbying activities, trade association memberships, and political contributions",
+  "Operate an independently managed, confidential, multi-lingual whistleblowing platform accessible to all employees, suppliers, and community stakeholders",
+  "Publish a comprehensive tax transparency report aligned to GRI 207 — disclosing tax strategy, governance, total tax contribution, and country-by-country reporting where applicable",
+  "Establish Board-level oversight of ethics and compliance — with a dedicated Ethics & Compliance Committee or equivalent",
+  "Conduct annual third-party corruption risk assessments of all high-risk business partners, agents, and intermediaries",
+  "Ensure all employees receive annual anti-corruption, ethics, and compliance training — with completion rates published"
+],
+monitoring:[
+  {metric:"Anti-Corruption Training Rate",desc:"% of employees completing annual anti-corruption/ethics training — target 100%; track by region and function"},
+  {metric:"Whistleblower Reports",desc:"Reports per 1,000 employees annually — low numbers may indicate fear not absence of issues; track resolution rates"},
+  {metric:"3rd Party Due Diligence",desc:"% of high-risk business partners with completed ethics and corruption due diligence — updated annually"},
+  {metric:"Confirmed Corruption Incidents",desc:"Number of confirmed bribery or corruption incidents — target zero; disclose and explain any incidents"},
+  {metric:"Board Independence",desc:"% independent non-executive directors on the Board — and % of Audit, Remuneration, and Risk committees that are independent"},
+  {metric:"Tax Transparency Score",desc:"Quality of tax transparency disclosure per GRI 207 framework — independently assessed"}
+],
+kpis:[
+  {name:"Anti-Corruption Training",desc:"% staff completing annual training",target:"Target: 100% completion"},
+  {name:"Whistleblower Reports/1000",desc:"Reports per 1,000 employees",target:"Leading indicator — track trend"},
+  {name:"3rd Party Due Diligence",desc:"% high-risk partners assessed",target:"Target: 100% high-risk partners"},
+  {name:"Board Independence",desc:"% independent NEDs",target:"Target: ≥50% independent NEDs"}
+],
+frameworks:["GRI 205","GRI 206","GRI 207","ISO 37001","UNGC Principle 10","FCPA","UK Bribery Act","EU Anti-Corruption","B Team Responsible Tax"],
+actions:[
+  "Achieve ISO 37001 certification and publish an annual anti-bribery compliance report with completion rates, risk assessments, incidents (if any), and continuous improvement actions",
+  "Publish a lobbying transparency report listing all trade associations, political contributions, and policy positions — and conduct an assessment of alignment between lobbying activity and stated sustainability commitments",
+  "Commission an independent review of your tax approach and publish a GRI 207-aligned tax transparency report — including country-by-country analysis for major operating jurisdictions"
+],
+example:"<strong>Leading Practice:</strong> Vodafone publishes one of the most comprehensive total tax contribution reports in the FTSE 100, disclosing taxes paid in every country of operation and distinguishing between taxes borne and taxes collected. Siemens rebuilt its entire compliance infrastructure after a major corruption scandal in 2008, achieving ISO 37001 certification and becoming a global benchmark for anti-corruption governance.",
+impact:85},
+
+{num:17,pillar:"G",title:"Partnerships for the Goals",subtitle:"Strengthen the means of implementation and revitalise the global partnership for sustainable development",
+desc:"Transparent SDG reporting, strategic multi-stakeholder partnerships, and sustainability-linked financing demonstrate that an organisation is a genuine contributor to the global 2030 Agenda.",
+definition:"SDG 17 is the partnership and implementation SDG — recognising that no single organisation, government, or sector can achieve the 2030 Agenda alone. It calls for a global partnership that mobilises finance, technology, knowledge, and policy across all stakeholders. For organisations, this SDG means publishing high-quality, transparent sustainability reporting that holds them accountable for their SDG contributions; joining and actively participating in credible industry coalitions and multi-stakeholder initiatives; engaging constructively with policymakers on sustainability regulation; supporting capacity building in supply chains and developing markets; and using sustainability-linked financing to align capital with sustainability performance.",
+whyItMatters:"The annual financing gap for the SDGs is estimated at $4.2 trillion — more than double current sustainable investment flows. The private sector must close this gap. Organisations that demonstrate genuine partnership — through transparency, coalition membership, policy engagement, and financial innovation — build trust with investors, regulators, customers, and communities. They also access networks, data, and knowledge that accelerate their own sustainability performance. Conversely, organisations that report superficially, lobby against sustainability regulation while making public commitments, or treat SDG alignment as a marketing exercise undermine the entire 2030 Agenda.",
+requirements:[
+  "Publish an annual sustainability report aligned to GRI Standards (Universal Standards 2021) with an SDG content index mapping disclosures to relevant SDG targets",
+  "Join at minimum two credible, material sustainability initiatives or coalitions (UN Global Compact, We Mean Business, RE100, SBTi, WBCSD, B Team, etc.) and actively contribute",
+  "Disclose sustainability-linked financing: green bonds, sustainability-linked loans, and ESG-linked credit facilities as % of total debt",
+  "Obtain third-party limited assurance on core ESG data — with a roadmap to reasonable assurance",
+  "Report on technology transfer and capacity building activities in supply chains and developing market communities",
+  "Ensure public policy and lobbying positions are aligned with stated ESG commitments — and disclose any conflicts",
+  "Engage with the UN SDG reporting architecture: participate in UN Global Compact Communication on Progress (CoP)"
+],
+monitoring:[
+  {metric:"SDG Disclosure Quality",desc:"% of the 17 SDGs with specific, measurable targets, annual KPIs, and outcome narratives in the sustainability report"},
+  {metric:"Coalition Memberships",desc:"Number of active, material sustainability coalitions joined — and evidence of active participation beyond signature"},
+  {metric:"SLL/Green Bond %",desc:"Sustainability-linked and green financing as % of total debt — track annually against target"},
+  {metric:"Assurance Coverage",desc:"% of ESG disclosures covered by third-party assurance — track progress from limited to reasonable assurance"},
+  {metric:"Lobby Alignment Score",desc:"Alignment between public lobbying positions and stated ESG commitments — independently assessed"},
+  {metric:"Capacity Building Reach",desc:"Number of suppliers or community organisations supported through capacity building programmes"}
+],
+kpis:[
+  {name:"SDG Disclosure Quality",desc:"% SDGs with targets & KPIs",target:"Target: All 17 SDGs with data"},
+  {name:"Coalition Memberships",desc:"Active sustainability coalitions",target:"Target: ≥3 material coalitions"},
+  {name:"SLL Financing %",desc:"Sustainability-linked debt %",target:"Target: ≥25% of total debt"},
+  {name:"Assurance Coverage",desc:"% ESG data third-party assured",target:"Target: Limited → Reasonable assurance"}
+],
+frameworks:["GRI Universal Standards 2021","UNGC CoP","ISSB IFRS S1","SDG Impact Standards","Integrated Reporting <IR>","WBCSD","UN SDG Business Brief"],
+actions:[
+  "Publish a GRI-aligned sustainability report with a full SDG content index — mapping every material disclosure to a specific SDG target, with quantified outcomes and third-party assurance on key metrics",
+  "Join the UN Global Compact and submit an annual Communication on Progress (CoP) — committing to the Ten Principles on Human Rights, Labour, Environment, and Anti-Corruption",
+  "Issue a sustainability-linked bond or loan with KPIs tied to your most material SDG commitments — and report quarterly on KPI performance to bondholders/lenders"
+],
+example:"<strong>Leading Practice:</strong> Danone was the first FTSE 100-equivalent company to achieve B Corp certification — demonstrating commitment to the highest social and environmental standards across its entire business. HSBC has issued over $50 billion in sustainable financing, with sustainability-linked loans tied to carbon reduction targets and social inclusion metrics. Both show that SDG 17 partnership is embedded in strategy, not just communication.",
+impact:80}
+];
+
+let currentFilter='all', currentIdx=-1;
+const PC={E:'chip-E',S:'chip-S',G:'chip-G',ES:'chip-ES'};
+const PL={E:'Environmental',S:'Social',G:'Governance',ES:'E + S Cross-Pillar'};
+function cc(p){return PC[p]||'chip-E'}
+function pl(p){return PL[p]||p}
+function ic(v){return v>=90?'#ef4444':v>=75?'#f97316':v>=60?'#eab308':'#22c55e'}
+function il(v){return v>=90?'CRITICAL':v>=75?'HIGH':v>=60?'MEDIUM':'MODERATE'}
+function fw_class(f){
+  if(f.startsWith('GRI'))return 'fw-gri';
+  if(f.startsWith('SASB'))return 'fw-sasb';
+  if(f==='TCFD'||f.startsWith('CDP')||f.startsWith('ISSB')||f.startsWith('IFRS'))return 'fw-tcfd';
+  if(f.startsWith('ISO'))return 'fw-iso';
+  if(f.startsWith('SBT')||f.startsWith('TNFD')||f.startsWith('SBTN'))return 'fw-sbti';
+  return 'fw-un';
+}
+
+function buildCards(){
+  const g=document.getElementById('grid');
+  g.innerHTML='';
+  topics.forEach((t,i)=>{
+    const d=document.createElement('div');
+    d.className='card';d.setAttribute('data-p',t.pillar);d.setAttribute('data-i',i);
+    d.style.animationDelay=(i%12)*.04+'s';
+    d.innerHTML=`
+      <div class="sdg-row">
+        <div class="sdg-num" style="background:${C[t.num]}">${t.num}</div>
+        <div><div class="sdg-title">${t.title}</div><div class="sdg-sub">${t.subtitle}</div></div>
+      </div>
+      <span class="pillar-chip ${cc(t.pillar)}">${pl(t.pillar)}</span>
+      <div class="card-desc">${t.desc}</div>
+      <div class="card-footer">
+        <div class="fw-tags">${t.frameworks.slice(0,3).map(f=>`<span class="fw-tag">${f}</span>`).join('')}</div>
+        <span class="read-lnk">Read Article →</span>
+      </div>`;
+    d.addEventListener('click',()=>openModal(i));
+    g.appendChild(d);
+  });
+  updateCount();
+}
+
+function setFilter(f,btn){
+  currentFilter=f;
+  document.querySelectorAll('.f-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  filterCards();
+}
+
+function filterCards(){
+  const q=document.getElementById('searchInput').value.toLowerCase();
+  let n=0;
+  document.querySelectorAll('.card').forEach(c=>{
+    const i=parseInt(c.getAttribute('data-i'));
+    const t=topics[i];
+    const mf=currentFilter==='all'||t.pillar===currentFilter||(currentFilter==='E'&&t.pillar==='ES')||(currentFilter==='S'&&t.pillar==='ES');
+    const mq=!q||t.title.toLowerCase().includes(q)||t.desc.toLowerCase().includes(q)||t.definition.toLowerCase().includes(q)||t.frameworks.some(f=>f.toLowerCase().includes(q))||t.subtitle.toLowerCase().includes(q);
+    c.classList.toggle('hidden',!(mf&&mq));
+    if(mf&&mq)n++;
+  });
+  document.getElementById('countEl').textContent=n+' article'+(n!==1?'s':'');
+}
+
+function updateCount(){document.getElementById('countEl').textContent=topics.length+' articles';}
+
+function pickRandom(){
+  const v=Array.from(document.querySelectorAll('.card:not(.hidden)'));
+  if(!v.length)return;
+  const c=v[Math.floor(Math.random()*v.length)];
+  document.querySelectorAll('.card').forEach(x=>x.classList.remove('spotlight'));
+  c.classList.add('spotlight');
+  c.scrollIntoView({behavior:'smooth',block:'center'});
+  setTimeout(()=>c.classList.remove('spotlight'),3000);
+  openModal(parseInt(c.getAttribute('data-i')));
+}
+
+function openModal(idx){
+  currentIdx=idx;
+  const t=topics[idx];
+  const col=C[t.num];
+  document.getElementById('mBar').style.background=col;
+  document.getElementById('mBody').innerHTML=`
+    <div class="art-header">
+      <div class="art-sdg-row">
+        <div class="art-badge" style="background:${col}">${t.num}</div>
+        <div style="flex:1">
+          <div class="art-title">${t.title}</div>
+          <div class="art-subtitle">${t.subtitle}</div>
+        </div>
+      </div>
+      <div class="art-meta">
+        <span class="meta-pill ${cc(t.pillar)}" style="font-size:.67rem;padding:.2rem .75rem;border-radius:100px;border-color:currentColor">${pl(t.pillar)}</span>
+        <span class="meta-pill" style="background:rgba(255,255,255,.04);color:var(--text-muted);border-color:var(--border);font-size:.67rem;padding:.2rem .75rem;border-radius:100px">SDG ${t.num} of 17</span>
+        <span class="meta-pill" style="background:${ic(t.impact)}1a;color:${ic(t.impact)};border-color:${ic(t.impact)}44;font-size:.67rem;padding:.2rem .75rem;border-radius:100px">${il(t.impact)} Priority</span>
+      </div>
+      <div class="imp-row">
+        <span class="imp-word" style="color:${ic(t.impact)}">${il(t.impact)}</span>
+        <div class="imp-track"><div class="imp-fill" style="width:${t.impact}%;background:${ic(t.impact)}"></div></div>
+        <span class="imp-pct">${t.impact}%</span>
+      </div>
+    </div>
+
+    <div class="art-section">
+      <div class="sec-label">Definition & Business Context</div>
+      <div class="def-box"><p>${t.definition}</p></div>
+      <div class="why-text"><p><strong style="color:var(--text-secondary)">Why It Matters:</strong> ${t.whyItMatters}</p></div>
+    </div>
+
+    <div class="art-section">
+      <div class="sec-label">Requirements — What Your Organisation Must Address</div>
+      <ul class="req-list">${t.requirements.map(r=>`<li>${r}</li>`).join('')}</ul>
+    </div>
+
+    <div class="art-section">
+      <div class="sec-label">How to Monitor — Measurement & Tracking Framework</div>
+      <div class="monitor-grid">${t.monitoring.map(m=>`<div class="monitor-item"><div class="monitor-metric">${m.metric}</div><div class="monitor-desc">${m.desc}</div></div>`).join('')}</div>
+    </div>
+
+    <div class="art-section">
+      <div class="sec-label">KPIs & Performance Targets</div>
+      <div class="kpi-grid">${t.kpis.map(k=>`<div class="kpi-card"><div class="kpi-name">${k.name}</div><div class="kpi-desc">${k.desc}</div><div class="kpi-target">${k.target}</div></div>`).join('')}</div>
+    </div>
+
+    <div class="art-section">
+      <div class="sec-label">Excellence Actions — Where to Start This Year</div>
+      <ul class="action-list">${t.actions.map(a=>`<li>${a}</li>`).join('')}</ul>
+    </div>
+
+    <div class="art-section">
+      <div class="sec-label">Reporting Frameworks & International Standards</div>
+      <div class="fw-row">${t.frameworks.map(f=>`<span class="fw-b ${fw_class(f)}">${f}</span>`).join('')}</div>
+    </div>
+
+    <div class="art-section">
+      <div class="sec-label">Real-World Leading Practice</div>
+      <div class="example-box"><p>${t.example}</p></div>
+    </div>
+
+    <div class="modal-nav">
+      <button class="nav-btn" onclick="navigate(-1)">← Previous SDG</button>
+      <button class="nav-btn primary" onclick="closeModal()">Close</button>
+      <button class="nav-btn" onclick="navigate(1)">Next SDG →</button>
+    </div>`;
+  document.getElementById('overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+  document.getElementById('modal').scrollTop=0;
+}
+
+function closeModal(){document.getElementById('overlay').classList.remove('open');document.body.style.overflow='';}
+function closeOutside(e){if(e.target===document.getElementById('overlay'))closeModal();}
+function navigate(d){let i=currentIdx+d;if(i<0)i=topics.length-1;if(i>=topics.length)i=0;openModal(i);}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();if(e.key==='ArrowRight')navigate(1);if(e.key==='ArrowLeft')navigate(-1);});
+
+
+/* ── FRAMEWORK TABLE ── */
+const FRAMEWORKS=[
+  {name:"GRI 201",full:"GRI Standard 201 — Economic Performance",type:"GRI",typeColor:"#22c55e",scope:"Discloses direct economic value generated and distributed, financial implications of climate change, pension obligations, and government financial assistance.",sdgs:[1,2,8,9,17],mandatory:"Voluntary globally; referenced in EU CSRD (mandatory for large EU companies from 2025)"},
+  {name:"GRI 203",full:"GRI Standard 203 — Indirect Economic Impacts",type:"GRI",typeColor:"#22c55e",scope:"Infrastructure investments, significant indirect economic impacts on communities, and development impacts in areas of operation.",sdgs:[9,11],mandatory:"Voluntary; increasingly expected by investors and rating agencies"},
+  {name:"GRI 205",full:"GRI Standard 205 — Anti-Corruption",type:"GRI",typeColor:"#22c55e",scope:"Operations assessed for corruption risks, training on anti-corruption policies, and confirmed incidents of corruption and actions taken.",sdgs:[16],mandatory:"Voluntary; referenced in UK Bribery Act guidance and EU CSRD"},
+  {name:"GRI 206",full:"GRI Standard 206 — Anti-Competitive Behaviour",type:"GRI",typeColor:"#22c55e",scope:"Legal actions for anti-competitive behaviour, anti-trust, and monopoly practices and their outcomes.",sdgs:[16],mandatory:"Voluntary; compliance with competition law is legally mandatory"},
+  {name:"GRI 207",full:"GRI Standard 207 — Tax",type:"GRI",typeColor:"#22c55e",scope:"Tax governance, control, and risk management; stakeholder engagement; country-by-country reporting of tax jurisdictions.",sdgs:[16,17],mandatory:"Voluntary; OECD BEPS country-by-country reporting is mandatory for MNCs"},
+  {name:"GRI 301",full:"GRI Standard 301 — Materials",type:"GRI",typeColor:"#22c55e",scope:"Materials used by weight/volume, recycled input materials used, reclaimed products and packaging materials.",sdgs:[12],mandatory:"Voluntary; EU Taxonomy may require materials disclosure for some sectors"},
+  {name:"GRI 302",full:"GRI Standard 302 — Energy",type:"GRI",typeColor:"#22c55e",scope:"Energy consumption within/outside the organisation, energy intensity, reduction of energy consumption, reductions in product/service energy requirements.",sdgs:[7,12],mandatory:"Voluntary; UK SECR and EU ESOS require energy reporting for large organisations"},
+  {name:"GRI 303",full:"GRI Standard 303 — Water and Effluents",type:"GRI",typeColor:"#22c55e",scope:"Water withdrawal by source, water discharge by quality/destination, water consumption, management of water-related impacts.",sdgs:[6,12],mandatory:"Voluntary; CDP Water Security strongly encouraged; some jurisdictions mandate water reporting"},
+  {name:"GRI 304",full:"GRI Standard 304 — Biodiversity",type:"GRI",typeColor:"#22c55e",scope:"Operational sites near/in protected areas, impacts on biodiversity, habitats protected/restored, IUCN Red List species affected.",sdgs:[14,15],mandatory:"Voluntary; EU Taxonomy biodiversity criteria mandatory for some activities"},
+  {name:"GRI 305",full:"GRI Standard 305 — Emissions",type:"GRI",typeColor:"#22c55e",scope:"Scope 1, 2, and 3 GHG emissions, GHG intensity, reduction of GHG emissions, emissions of ozone-depleting substances and air emissions.",sdgs:[13,12],mandatory:"Voluntary; TCFD mandatory UK/EU; ISSB IFRS S2 increasingly mandatory globally"},
+  {name:"GRI 306",full:"GRI Standard 306 — Waste",type:"GRI",typeColor:"#22c55e",scope:"Waste generated, waste diverted from disposal (reuse, recycling, composting), waste directed to disposal by method.",sdgs:[2,12,14],mandatory:"Voluntary; EU Waste Framework Directive mandates waste reporting for some sectors"},
+  {name:"GRI 401",full:"GRI Standard 401 — Employment",type:"GRI",typeColor:"#22c55e",scope:"New employee hires and turnover, benefits provided to full-time employees, parental leave uptake and return rates.",sdgs:[8],mandatory:"Voluntary; EU CSRD human capital disclosures from 2025"},
+  {name:"GRI 402",full:"GRI Standard 402 — Labour/Management Relations",type:"GRI",typeColor:"#22c55e",scope:"Minimum notice periods for operational changes and provisions for employee consultation.",sdgs:[8],mandatory:"Voluntary; ILO conventions on consultation are binding in member states"},
+  {name:"GRI 403",full:"GRI Standard 403 — Occupational Health & Safety",type:"GRI",typeColor:"#22c55e",scope:"OHS management system, hazard identification, worker participation, worker training, promotion of worker health, work-related injury rates.",sdgs:[3],mandatory:"Voluntary reporting; ISO 45001 certification increasingly expected"},
+  {name:"GRI 404",full:"GRI Standard 404 — Training and Education",type:"GRI",typeColor:"#22c55e",scope:"Average hours of training per year per employee, programmes for upgrading employee skills, percentage of employees receiving performance and career reviews.",sdgs:[4],mandatory:"Voluntary; EU CSRD social standards include training disclosures"},
+  {name:"GRI 405",full:"GRI Standard 405 — Diversity and Equal Opportunity",type:"GRI",typeColor:"#22c55e",scope:"Diversity of governance bodies and employees by age, gender, minority groups; ratio of basic salary and remuneration by gender.",sdgs:[5,10],mandatory:"Voluntary; UK Gender Pay Gap reporting mandatory for 250+ employee organisations"},
+  {name:"GRI 406",full:"GRI Standard 406 — Non-Discrimination",type:"GRI",typeColor:"#22c55e",scope:"Incidents of discrimination and corrective actions taken.",sdgs:[5,10],mandatory:"Voluntary; anti-discrimination law is legally mandatory in most jurisdictions"},
+  {name:"GRI 407",full:"GRI Standard 407 — Freedom of Association",type:"GRI",typeColor:"#22c55e",scope:"Operations and suppliers where right to freedom of association and collective bargaining may be at risk.",sdgs:[8],mandatory:"Voluntary; ILO Conventions 87 & 98 binding in member states"},
+  {name:"GRI 408-409",full:"GRI 408 Child Labour & 409 Forced Labour",type:"GRI",typeColor:"#22c55e",scope:"Operations and suppliers at risk of child labour incidents; operations and suppliers at significant risk for forced or compulsory labour.",sdgs:[8],mandatory:"Voluntary reporting; UK Modern Slavery Act, EU CSDDD create legal obligations"},
+  {name:"GRI 414",full:"GRI Standard 414 — Supplier Social Assessment",type:"GRI",typeColor:"#22c55e",scope:"New suppliers screened for social criteria, negative social impacts in supply chain, actions taken.",sdgs:[1,8],mandatory:"Voluntary; EU CSDDD mandates supply chain due diligence from 2026"},
+  {name:"GRI Universal 2021",full:"GRI Universal Standards 2021 — Foundation, Disclosures, Sector Standards",type:"GRI",typeColor:"#22c55e",scope:"The complete GRI reporting framework covering materiality, stakeholder engagement, governance disclosures, and all topic-specific standards.",sdgs:[17],mandatory:"Voluntary globally; EU CSRD adopts GRI-aligned ESRS standards as mandatory for large EU companies"},
+  {name:"TCFD",full:"Task Force on Climate-related Financial Disclosures",type:"Disclosure",typeColor:"#38bdf8",scope:"Governance, strategy, risk management, and metrics/targets for climate-related risks and opportunities — physical and transition risk.",sdgs:[7,11,13,15],mandatory:"Mandatory: UK (2022), New Zealand, Singapore, Japan, EU CSRD. Voluntary elsewhere but rapidly becoming de facto standard"},
+  {name:"ISSB IFRS S1",full:"IFRS Sustainability Disclosure Standard S1 — General Requirements",type:"Disclosure",typeColor:"#38bdf8",scope:"General requirements for sustainability-related financial disclosures — materiality, timing, connectivity with financial statements.",sdgs:[17],mandatory:"Adopted by 20+ jurisdictions; EU CSRD/ESRS is the EU equivalent; expected global baseline by 2026"},
+  {name:"ISSB IFRS S2",full:"IFRS Sustainability Disclosure Standard S2 — Climate-related Disclosures",type:"Disclosure",typeColor:"#38bdf8",scope:"Climate-related risks and opportunities, scenario analysis, Scope 1/2/3 emissions, and industry-specific climate metrics.",sdgs:[13],mandatory:"Mandatory in adopted jurisdictions; supersedes TCFD in most frameworks; UK expected to adopt 2025"},
+  {name:"CDP Climate",full:"Carbon Disclosure Project — Climate Change",type:"Disclosure",typeColor:"#38bdf8",scope:"Annual disclosure of Scope 1, 2, and 3 emissions, climate governance, risk and opportunity management, targets and performance. Scored A–D.",sdgs:[7,12,13],mandatory:"Voluntary; mandatory equivalent in TCFD/ISSB frameworks; investors controlling $136T request CDP disclosure"},
+  {name:"CDP Water Security",full:"Carbon Disclosure Project — Water Security",type:"Disclosure",typeColor:"#38bdf8",scope:"Water governance, risk assessment (physical, regulatory, reputational), water accounting, targets and performance. Scored A–D.",sdgs:[6],mandatory:"Voluntary; investors controlling $136T request CDP Water disclosure"},
+  {name:"CDP Forests",full:"Carbon Disclosure Project — Forests",type:"Disclosure",typeColor:"#38bdf8",scope:"Deforestation risk in supply chains (timber, palm oil, soy, cattle/leather), governance, risk management, targets for forest-risk commodities.",sdgs:[2,15],mandatory:"Voluntary; EU Deforestation Regulation creates complementary legal obligations"},
+  {name:"SBTi",full:"Science Based Targets initiative — Climate",type:"Framework",typeColor:"#a3e635",scope:"Validates corporate GHG reduction targets aligned to 1.5°C Paris Agreement pathway. Covers Scope 1, 2, and material Scope 3 emissions.",sdgs:[7,12,13],mandatory:"Voluntary commitment; effectively required by major investors and supply chain customers (Apple, Walmart, etc.)"},
+  {name:"SBTN",full:"Science Based Targets for Nature",type:"Framework",typeColor:"#a3e635",scope:"Science-based targets for nature across land, freshwater, and ocean — sister initiative to SBTi. Targets protect, restore, and transform.",sdgs:[6,14,15],mandatory:"Voluntary; rapidly becoming expected standard following TNFD launch and Kunming-Montreal GBF"},
+  {name:"TNFD",full:"Taskforce on Nature-related Financial Disclosures",type:"Disclosure",typeColor:"#a3e635",scope:"LEAP framework (Locate, Evaluate, Assess, Prepare) for assessing and disclosing nature-related risks and opportunities.",sdgs:[2,14,15],mandatory:"Voluntary; 1,000+ adopters in first year (2023); EU CSRD biodiversity ESRS aligned; expected to follow TCFD trajectory"},
+  {name:"SASB",full:"Sustainability Accounting Standards Board",type:"Standards",typeColor:"#f0c040",scope:"Industry-specific sustainability accounting standards covering the most financially material ESG topics for 77 industry sectors.",sdgs:[1,2,3,4,5,8,9,10],mandatory:"Voluntary; integrated into ISSB framework; widely used by US investors and companies"},
+  {name:"SASB Human Capital",full:"SASB Human Capital Standards",type:"Standards",typeColor:"#f0c040",scope:"Workforce composition, diversity, pay equity, employee engagement, and human rights across industry-specific standards.",sdgs:[4,5,8,10],mandatory:"Voluntary; SEC human capital disclosure rules in the US require some human capital disclosures"},
+  {name:"ISO 45001",full:"ISO 45001:2018 — Occupational Health & Safety Management Systems",type:"ISO Standard",typeColor:"#fb7185",scope:"Requirements for an OH&S management system to improve safety, reduce workplace risks, and enhance health and well-being at work.",sdgs:[3],mandatory:"Voluntary certification; UK HSE, EU OSH Framework Directive require equivalent management"},
+  {name:"ISO 14001",full:"ISO 14001:2015 — Environmental Management Systems",type:"ISO Standard",typeColor:"#fb7185",scope:"Requirements for an EMS enabling organisations to enhance environmental performance, fulfil compliance obligations, and achieve environmental objectives.",sdgs:[6,11,12],mandatory:"Voluntary certification; required by many supply chain customers and public procurement frameworks"},
+  {name:"ISO 14046",full:"ISO 14046:2014 — Water Footprint",type:"ISO Standard",typeColor:"#fb7185",scope:"Principles, requirements and guidelines for water footprint assessment of products, processes, and organisations.",sdgs:[6],mandatory:"Voluntary; used to support CDP Water and SBTi for Nature water assessments"},
+  {name:"ISO 14064",full:"ISO 14064 — GHG Quantification, Monitoring & Verification",type:"ISO Standard",typeColor:"#fb7185",scope:"Part 1: GHG inventory quantification/reporting. Part 2: project-level. Part 3: verification and validation. The technical backbone of GHG accounting.",sdgs:[13],mandatory:"Voluntary; used to underpin TCFD, CDP, and ISSB S2 disclosures; some ETS programmes require ISO 14064"},
+  {name:"ISO 50001",full:"ISO 50001:2018 — Energy Management Systems",type:"ISO Standard",typeColor:"#fb7185",scope:"Framework for organisations to establish energy policy, set targets, measure data, and make decisions to improve energy performance.",sdgs:[7],mandatory:"Voluntary; required under UK ESOS for large organisations; EU Energy Efficiency Directive encourages adoption"},
+  {name:"ISO 56001",full:"ISO 56001:2024 — Innovation Management Systems",type:"ISO Standard",typeColor:"#fb7185",scope:"Requirements for establishing, implementing, maintaining, and improving an innovation management system.",sdgs:[9],mandatory:"Voluntary; new standard (2024) with growing adoption in R&D-intensive industries"},
+  {name:"ISO 37001",full:"ISO 37001:2016 — Anti-Bribery Management Systems",type:"ISO Standard",typeColor:"#fb7185",scope:"Requirements for establishing, implementing, and improving an anti-bribery management system — the most recognised anti-corruption certification.",sdgs:[16],mandatory:"Voluntary certification; referenced in UK Bribery Act adequate procedures defence"},
+  {name:"ISO 37101",full:"ISO 37101:2016 — Sustainable Development in Communities",type:"ISO Standard",typeColor:"#fb7185",scope:"Framework for establishing, implementing, and managing a holistic strategy for sustainable development in communities.",sdgs:[11],mandatory:"Voluntary; used by urban developers and municipalities"},
+  {name:"GHG Protocol",full:"Greenhouse Gas Protocol Corporate Standard",type:"Framework",typeColor:"#a3e635",scope:"The world's most widely used GHG accounting and reporting standard. Defines Scope 1, 2, and 3 categories and calculation methodologies.",sdgs:[7,12,13],mandatory:"De facto mandatory: underpins TCFD, CDP, SBTi, ISSB S2, and most national GHG reporting frameworks"},
+  {name:"RE100",full:"RE100 — Renewable Electricity 100%",type:"Initiative",typeColor:"#a3e635",scope:"Global corporate renewable energy initiative. Members commit to 100% renewable electricity and report annually on progress.",sdgs:[7],mandatory:"Voluntary; 400+ major corporations joined; increasingly expected by investors and green finance providers"},
+  {name:"ILO Conventions",full:"International Labour Organisation Core Conventions",type:"International Law",typeColor:"#c4b5fd",scope:"8 core conventions covering: freedom of association, right to organise and collective bargaining, abolition of forced labour, child labour, and non-discrimination.",sdgs:[1,8],mandatory:"Binding on ILO member states (187 countries); companies expected to respect conventions in supply chains"},
+  {name:"UNGC",full:"UN Global Compact — Ten Principles",type:"Initiative",typeColor:"#c4b5fd",scope:"Ten principles in human rights (1-2), labour (3-6), environment (7-9), and anti-corruption (10). Requires annual Communication on Progress.",sdgs:[1,8,13,16,17],mandatory:"Voluntary; 22,000+ companies signed; annual CoP required; removal for non-reporters"},
+  {name:"UN Guiding Principles",full:"UN Guiding Principles on Business and Human Rights (UNGPs)",type:"International Framework",typeColor:"#c4b5fd",scope:"The authoritative global framework on business and human rights — Protect (states), Respect (business), Remedy (access to remedy). Endorsed by UN Human Rights Council.",sdgs:[1,8],mandatory:"Voluntary framework; EU CSDDD (2026) and OECD Guidelines create binding due diligence obligations aligned to UNGPs"},
+  {name:"Modern Slavery Act",full:"UK Modern Slavery Act 2015",type:"Regulation",typeColor:"#c4b5fd",scope:"Requires UK commercial organisations with £36M+ turnover to publish an annual Modern Slavery Statement disclosing steps taken to prevent slavery and trafficking.",sdgs:[8],mandatory:"Mandatory for qualifying UK organisations; Australia, Canada, Germany have equivalent legislation"},
+  {name:"EU CSDDD",full:"EU Corporate Sustainability Due Diligence Directive",type:"Regulation",typeColor:"#c4b5fd",scope:"Mandatory human rights and environmental due diligence across the value chain for large EU companies and non-EU companies operating in EU.",sdgs:[1,8,15],mandatory:"Mandatory — EU law from 2024; phased application from 2027. One of the most significant ESG regulations globally"},
+  {name:"EU CSRD",full:"EU Corporate Sustainability Reporting Directive",type:"Regulation",typeColor:"#c4b5fd",scope:"Requires large EU companies to report sustainability information using European Sustainability Reporting Standards (ESRS) — aligned to GRI and ISSB.",sdgs:[17],mandatory:"Mandatory for large EU companies from 2025; ~50,000 companies affected; most comprehensive ESG reporting mandate globally"},
+  {name:"WEPs",full:"UN Women's Empowerment Principles",type:"Initiative",typeColor:"#c4b5fd",scope:"Seven principles for businesses to empower women in the workplace, marketplace, and community — from equal pay to community leadership.",sdgs:[5],mandatory:"Voluntary; CEO sign-on commitment with annual reporting expected"},
+  {name:"RSPO",full:"Roundtable on Sustainable Palm Oil",type:"Certification",typeColor:"#a3e635",scope:"Global standard for sustainable palm oil production and sourcing. RSPO certification covers plantation, processing, and supply chain custody.",sdgs:[2,15],mandatory:"Voluntary certification; required by many retailers and consumer goods companies; EUDR may require equivalent"},
+  {name:"FSC",full:"Forest Stewardship Council",type:"Certification",typeColor:"#a3e635",scope:"International certification for responsible forest management. FSC-certified timber and paper products meet environmental, social, and economic standards.",sdgs:[15],mandatory:"Voluntary certification; required by many public procurement frameworks; EU Timber Regulation & EUDR aligned"},
+  {name:"MSC",full:"Marine Stewardship Council",type:"Certification",typeColor:"#a3e635",scope:"International certification standard for sustainable wild-caught seafood and sustainable fishing practices.",sdgs:[14],mandatory:"Voluntary; leading retailers require MSC certification for seafood supply chains"},
+  {name:"Ellen MacArthur Foundation",full:"Ellen MacArthur Foundation — Circular Economy Standards",type:"Initiative",typeColor:"#a3e635",scope:"New Plastics Economy Global Commitment, Butterfly Diagram, circular economy principles. Provides the intellectual framework for circular economy transition.",sdgs:[12,14],mandatory:"Voluntary; Global Commitment has 1,000+ signatories; widely referenced in EPR regulation design"},
+  {name:"LEED",full:"Leadership in Energy and Environmental Design",type:"Certification",typeColor:"#a3e635",scope:"Green building rating system covering energy use, water efficiency, CO₂ emissions, indoor environmental quality, and stewardship of resources.",sdgs:[11],mandatory:"Voluntary certification; required in many public procurement and real estate standards"},
+  {name:"BREEAM",full:"Building Research Establishment Environmental Assessment Method",type:"Certification",typeColor:"#a3e635",scope:"World's leading sustainability assessment and certification framework for buildings and infrastructure. Covers energy, water, ecology, transport, materials.",sdgs:[11],mandatory:"Voluntary; mandatory for some UK public sector buildings; widely required in commercial real estate"},
+  {name:"AWS Standard",full:"Alliance for Water Stewardship Standard",type:"Standard",typeColor:"#a3e635",scope:"International water stewardship standard for freshwater use — covering governance, sustainable water balance, water quality, and important water areas.",sdgs:[6],mandatory:"Voluntary certification; used alongside CDP Water Security and SBTi for Nature"},
+  {name:"Integrated Reporting",full:"Integrated Reporting <IR> Framework — IIRC/IFRS",type:"Framework",typeColor:"#38bdf8",scope:"Framework for integrated reporting connecting financial and non-financial information across six capitals: financial, manufactured, intellectual, human, social, and natural.",sdgs:[17],mandatory:"Voluntary; adopted by South Africa (JSE listed companies) and widely used globally alongside GRI"},
+  {name:"WBCSD",full:"World Business Council for Sustainable Development",type:"Initiative",typeColor:"#c4b5fd",scope:"CEO-led organisation of 200+ companies working on sustainability solutions. Publishes guidance on circular economy, nature, climate, and people.",sdgs:[9,17],mandatory:"Voluntary membership; produces widely adopted sector-specific sustainability guidance"},
+  {name:"Kunming-Montreal GBF",full:"Kunming-Montreal Global Biodiversity Framework",type:"International Agreement",typeColor:"#a3e635",scope:"Adopted at COP15 (2022). Sets the 30x30 target (protect 30% of land and ocean by 2030) and requires business biodiversity disclosures.",sdgs:[15],mandatory:"Binding on signatory governments; creates regulatory pressure on business through national laws and TNFD"},
+  {name:"EU Deforestation Regulation",full:"EU Deforestation Regulation (EUDR) 2023",type:"Regulation",typeColor:"#c4b5fd",scope:"Bans import/export of products associated with deforestation. Covers cattle, cocoa, coffee, palm oil, soy, wood, rubber, and derived products.",sdgs:[15,2],mandatory:"Mandatory — EU law; applies to all companies placing these commodities on EU market from 2025"},
+  {name:"Paris Agreement",full:"Paris Agreement on Climate Change — UNFCCC 2015",type:"International Law",typeColor:"#c4b5fd",scope:"International treaty limiting global warming to well below 2°C, preferably 1.5°C. NDCs, net zero targets, and transition plans all reference Paris alignment.",sdgs:[13],mandatory:"Binding on 195 signatory countries; creates national policies and regulations that bind business"}
+];
+
+function toggleFwTable(){
+  const wrap=document.getElementById('fwTableWrap');
+  const btn=document.getElementById('fwToggleBtn');
+  const isHidden=wrap.classList.contains('hidden');
+  wrap.classList.toggle('hidden',!isHidden);
+  btn.classList.toggle('open',isHidden);
+  btn.textContent=isHidden?'Hide Framework Table ▴':'Show Framework Table ▾';
+  if(isHidden && !wrap.getAttribute('data-built')){
+    buildFwTable();
+    wrap.setAttribute('data-built','1');
+  }
+}
+
+function buildFwTable(){
+  const sdgCol=C;
+  const tbody=document.getElementById('fwTableBody');
+  tbody.innerHTML='';
+  FRAMEWORKS.forEach(fw=>{
+    const typeColors={
+      'GRI':'#22c55e','Disclosure':'#38bdf8','Framework':'#a3e635',
+      'Standards':'#f0c040','ISO Standard':'#fb7185','Initiative':'#a3e635',
+      'Regulation':'#fb7185','International Law':'#c4b5fd','International Framework':'#c4b5fd',
+      'Certification':'#a3e635','Standard':'#a3e635','International Agreement':'#a3e635'
+    };
+    const col=typeColors[fw.type]||'#888';
+    const mandatoryColor=fw.mandatory.startsWith('Mandatory')?'#ef4444':'#4d7a5a';
+    const tr=document.createElement('tr');
+    tr.innerHTML=`
+      <td>
+        <div class="fw-name">${fw.name}</div>
+        <div class="fw-full">${fw.full}</div>
+      </td>
+      <td><span class="fw-type-badge" style="background:${col}18;color:${col};border:1px solid ${col}40">${fw.type}</span></td>
+      <td><div class="fw-scope">${fw.scope}</div></td>
+      <td>
+        <div class="fw-sdg-dots">
+          ${fw.sdgs.map(n=>`<div class="fw-sdg-dot" style="background:${sdgCol[n]}" title="SDG ${n}">${n}</div>`).join('')}
+        </div>
+      </td>
+      <td><div class="fw-mandatory" style="color:${mandatoryColor};font-size:.71rem;line-height:1.55">${fw.mandatory}</div></td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+buildCards();
+
+</script>
+</body>
+</html>
